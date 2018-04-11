@@ -1,0 +1,21 @@
+{
+  "fitbit": {
+    "appUUID": "646b0d0d-9fe9-44de-be20-b50172c39509",
+    "appType": "app",
+    "appDisplayName": "Weather & Forecast",
+    "iconFile": "resources/icon.png",
+    "wipeColor": "#607d8b",
+    "requestedPermissions": [
+      "access_internet",
+      "access_location"
+    ],
+    "buildTargets": [
+      "higgs"
+    ],
+    "i18n": {
+      "en": {
+        "name": "Weather & Forecast"
+      }
+    }
+  }
+}
