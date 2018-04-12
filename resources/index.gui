@@ -120,6 +120,7 @@
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
       </use>
 
+      <!-- Section 5  -->
       <use id="day5Header" href="#view-header" height="30" fill="silver">
         <set href="#text" attributeName="text-buffer" to="Section 2" />
       </use>
@@ -137,6 +138,48 @@
         <text id="day5Low" x="175" y="60" fill="white" font-size="20"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
         <text id="day5LowVal" x="222" y="60" fill="cornflowerblue" font-size="20"
+          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+      </use>
+      
+      <!-- Section 6  -->
+      <use id="day6Header" href="#view-header" height="30" fill="silver">
+        <set href="#text" attributeName="text-buffer" to="Section 2" />
+      </use>
+      <use href="#scrollview-item" height = "90">
+        <rect width="100%" height="100%" fill="fb-black" />
+         <text id="day6Description" x="3" y="25" fill="white" font-size="30"
+          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+
+        <image id="day6WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
+
+        <text id="day6High" x="75" y="60" fill="white" font-size="20"
+          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day6HighVal" x="126" y="60" fill="red" font-size="20"
+          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day6Low" x="175" y="60" fill="white" font-size="20"
+          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day6LowVal" x="222" y="60" fill="cornflowerblue" font-size="20"
+          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+      </use>
+      
+      <!-- Section 7  -->
+      <use id="day7Header" href="#view-header" height="30" fill="silver">
+        <set href="#text" attributeName="text-buffer" to="Section 2" />
+      </use>
+      <use href="#scrollview-item" height = "90">
+        <rect width="100%" height="100%" fill="fb-black" />
+         <text id="day7Description" x="3" y="25" fill="white" font-size="30"
+          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+
+        <image id="day7WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
+
+        <text id="day7High" x="75" y="60" fill="white" font-size="20"
+          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day7HighVal" x="126" y="60" fill="red" font-size="20"
+          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day7Low" x="175" y="60" fill="white" font-size="20"
+          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day7LowVal" x="222" y="60" fill="cornflowerblue" font-size="20"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
       </use>
     </use>

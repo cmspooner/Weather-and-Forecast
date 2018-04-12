@@ -11,6 +11,9 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
         <Text>
+          Beta 1.3: Added 2 more days and fixed stupid variable case error
+        </Text>
+        <Text>
           Beta 1.2: Areas Right size and Sun rise/set
         </Text>
         <Text>
