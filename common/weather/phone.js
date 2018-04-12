@@ -374,8 +374,20 @@ function prv_queryYahooWeather(latitude, longitude, unit, success, error) {
         //day3Date : Date((data.query.results.channel.item.forecast[2].date)),
         day3High : parseInt(data.query.results.channel.item.forecast[2].high),
         day3Low : parseInt(data.query.results.channel.item.forecast[2].low),
-        day3Condition : getSimpleCondition(data.query.results.channel.item.forecast[2].code),
-        day3Description : data.query.results.channel.item.forecast[2].text      
+        day3Condition : getSimpleCondition(parseInt(data.query.results.channel.item.forecast[2].code)),
+        day3Description : data.query.results.channel.item.forecast[2].text,    
+        
+         //day3Date : Date((data.query.results.channel.item.forecast[2].date)),
+        day4High : parseInt(data.query.results.channel.item.forecast[3].high),
+        day4Low : parseInt(data.query.results.channel.item.forecast[3].low),
+        day4Condition : getSimpleCondition(parseInt(data.query.results.channel.item.forecast[3].code)),
+        day4Description : data.query.results.channel.item.forecast[3].text,
+        
+         //day3Date : Date((data.query.results.channel.item.forecast[2].date)),
+        day5High : parseInt(data.query.results.channel.item.forecast[4].high),
+        day5Low : parseInt(data.query.results.channel.item.forecast[4].low),
+        day5Condition : getSimpleCondition(parseInt(data.query.results.channel.item.forecast[4].code)),
+        day5Description : data.query.results.channel.item.forecast[4].text      
       };
       // Send the weather data to the device
       if(success) success(weather);
