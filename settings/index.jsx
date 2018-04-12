@@ -5,7 +5,7 @@ function mySettings(props) {
         title={<Text bold align="center">Weather</Text>}>
          <Toggle
            settingsKey="unitToggle"
-           label="Tempterature in °F or °C"
+           label="US or Metric Units"
          />
       </Section>
       <Section
