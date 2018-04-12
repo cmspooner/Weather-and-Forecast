@@ -377,17 +377,29 @@ function prv_queryYahooWeather(latitude, longitude, unit, success, error) {
         day3Condition : getSimpleCondition(parseInt(data.query.results.channel.item.forecast[2].code)),
         day3Description : data.query.results.channel.item.forecast[2].text,    
         
-         //day3Date : Date((data.query.results.channel.item.forecast[2].date)),
+         //day4Date : Date((data.query.results.channel.item.forecast[2].date)),
         day4High : parseInt(data.query.results.channel.item.forecast[3].high),
         day4Low : parseInt(data.query.results.channel.item.forecast[3].low),
         day4Condition : getSimpleCondition(parseInt(data.query.results.channel.item.forecast[3].code)),
         day4Description : data.query.results.channel.item.forecast[3].text,
         
-         //day3Date : Date((data.query.results.channel.item.forecast[2].date)),
+         //day5Date : Date((data.query.results.channel.item.forecast[2].date)),
         day5High : parseInt(data.query.results.channel.item.forecast[4].high),
         day5Low : parseInt(data.query.results.channel.item.forecast[4].low),
         day5Condition : getSimpleCondition(parseInt(data.query.results.channel.item.forecast[4].code)),
-        day5Description : data.query.results.channel.item.forecast[4].text      
+        day5Description : data.query.results.channel.item.forecast[4].text,   
+        
+        //day6Date : Date((data.query.results.channel.item.forecast[2].date)),
+        day6High : parseInt(data.query.results.channel.item.forecast[5].high),
+        day6Low : parseInt(data.query.results.channel.item.forecast[5].low),
+        day6Condition : getSimpleCondition(parseInt(data.query.results.channel.item.forecast[5].code)),
+        day6Description : data.query.results.channel.item.forecast[5].text,  
+        
+        //day7Date : Date((data.query.results.channel.item.forecast[2].date)),
+        day7High : parseInt(data.query.results.channel.item.forecast[6].high),
+        day7Low : parseInt(data.query.results.channel.item.forecast[6].low),
+        day7Condition : getSimpleCondition(parseInt(data.query.results.channel.item.forecast[6].code)),
+        day7Description : data.query.results.channel.item.forecast[6].text   
       };
       // Send the weather data to the device
       if(success) success(weather);

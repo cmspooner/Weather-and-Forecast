@@ -84,6 +84,26 @@ let day5HighVal = document.getElementById("day5HighVal");
 let day5Low = document.getElementById("day5Low");
 let day5LowVal = document.getElementById("day5LowVal");
 
+//-------Day 6--------------
+let day6Header = document.getElementById("day6Header");
+let day6Description = document.getElementById("day6Description");
+
+let day6WeatherImage = document.getElementById("day6WeatherImage");
+let day6High = document.getElementById("day6High");
+let day6HighVal = document.getElementById("day6HighVal");
+let day6Low = document.getElementById("day6Low");
+let day6LowVal = document.getElementById("day6LowVal");
+
+//-------Day 7--------------
+let day7Header = document.getElementById("day7Header");
+let day7Description = document.getElementById("day7Description");
+
+let day7WeatherImage = document.getElementById("day7WeatherImage");
+let day7High = document.getElementById("day7High");
+let day7HighVal = document.getElementById("day7HighVal");
+let day7Low = document.getElementById("day7Low");
+let day7LowVal = document.getElementById("day7LowVal");
+
 
 messaging.peerSocket.onmessage = evt => {
   console.log(`App received: ${JSON.stringify(evt)}`);
@@ -152,7 +172,6 @@ weather.onsuccess = (data) => {
   visibility.text = "Visibility: " + data.visibility + " " + data.visibilityUnit;
   
   let sunR = new Date(data.sunrise);
-  console.log(sunR);
   let sunRH = sunR.getHours();
   let sunRM = util.zeroPad(sunR.getMinutes());
   let Rampm = " am"
@@ -168,9 +187,9 @@ weather.onsuccess = (data) => {
   } else {
     Rampm = ""
   }
-  let sunS = new Date(data.sunrise);
-  let sunSH = sunR.getHours();
-  let sunSM = util.zeroPad(sunR.getMinutes());
+  let sunS = new Date(data.sunset);
+  let sunSH = sunS.getHours();
+  let sunSM = util.zeroPad(sunS.getMinutes());
   let Sampm = " am"
   if (preferences.clockDisplay == "12h"){
     if (sunSH > 12){
@@ -197,7 +216,7 @@ weather.onsuccess = (data) => {
   //--------------Day 2--------------
   day2Header.text = util.toDay(day+1, "long");
   tomorrowWeatherImage.href = util.getForecastIcon(data.tomorrowCondition,
-                                                   data.tomorrowdescription);
+                                                   data.tomorrowDescription);
   tomorrowDescription.text = data.tomorrowDescription;
   tomorrowHigh.text = "High:"
   tomorrowHighVal.text = data.tomorrowHigh + "°"
@@ -207,7 +226,7 @@ weather.onsuccess = (data) => {
   //--------------Day 3--------------
   day3Header.text = util.toDay(day+2, "long");
   day3WeatherImage.href = util.getForecastIcon(data.day3Condition,
-                                                   data.day3description);
+                                                   data.day3Description);
   day3Description.text = data.day3Description;
   day3High.text = "High:"
   day3HighVal.text = data.day3High + "°"
@@ -217,7 +236,7 @@ weather.onsuccess = (data) => {
   //--------------Day 4--------------
   day4Header.text = util.toDay(day+3, "long");
   day4WeatherImage.href = util.getForecastIcon(data.day4Condition,
-                                                   data.day4description);
+                                                   data.day4Description);
   day4Description.text = data.day4Description;
   day4High.text = "High:"
   day4HighVal.text = data.day4High + "°"
@@ -227,12 +246,32 @@ weather.onsuccess = (data) => {
   //--------------Day 5--------------
   day5Header.text = util.toDay(day+4, "long");
   day5WeatherImage.href = util.getForecastIcon(data.day5Condition,
-                                                   data.day5description);
+                                                   data.day5Description);
   day5Description.text = data.day5Description;
   day5High.text = "High:"
   day5HighVal.text = data.day5High + "°"
   day5Low.text = "Low:"
   day5LowVal.text = data.day5Low + "°"
+  
+  //--------------Day 6--------------
+  day6Header.text = util.toDay(day+5, "long");
+  day6WeatherImage.href = util.getForecastIcon(data.day6Condition,
+                                                   data.day6Description);
+  day6Description.text = data.day6Description;
+  day6High.text = "High:"
+  day6HighVal.text = data.day6High + "°"
+  day6Low.text = "Low:"
+  day6LowVal.text = data.day6Low + "°"
+  
+  //--------------Day 7--------------
+  day7Header.text = util.toDay(day+6, "long");
+  day7WeatherImage.href = util.getForecastIcon(data.day7Condition,
+                                                   data.day7Description);
+  day7Description.text = data.day7Description;
+  day7High.text = "High:"
+  day7HighVal.text = data.day7High + "°"
+  day7Low.text = "Low:"
+  day7LowVal.text = data.day7Low + "°"
 }
 
 weather.onerror = (error) => {
