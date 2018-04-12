@@ -15,6 +15,11 @@ import { me as device } from "device";
 if (!device.screen) device.screen = { width: 348, height: 250 };
 console.log(`Dimensions: ${device.screen.width}x${device.screen.height}`);
 
+let loadingScreen = document.getElementById("loadingScreen");
+let loadingText = document.getElementById("loadingText");
+loadingText.text = "Downloading Weather..."
+let weatherScreen = document.getElementById("weatherScreen");
+
 let todayHeader = document.getElementById("todayHeader");
 let todayDescription = document.getElementById("todayDescription");
 
@@ -78,8 +83,6 @@ let day5Low = document.getElementById("day5Low");
 let day5LowVal = document.getElementById("day5LowVal");
 
 
-
-
 messaging.peerSocket.onmessage = evt => {
   console.log(`App received: ${JSON.stringify(evt)}`);
   if (evt.data.key === "unitToggle" && evt.data.newValue) {
@@ -105,6 +108,8 @@ weather.setMaximumAge(1 * 60 * 1000);
 weather.setFeelsLike(false);
 
 weather.onsuccess = (data) => {
+  weatherScreen.style.display = "inline";
+  loadingScreen.style.display = "none";
   console.log("Weather is " + JSON.stringify(data));
   
   let today = new Date();
