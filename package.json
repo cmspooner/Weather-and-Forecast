@@ -2,7 +2,7 @@
   "fitbit": {
     "appUUID": "7840fc07-7a9a-452d-b259-3368c61a9b4d",
     "appType": "app",
-    "appDisplayName": "Weather_And_Forecast",
+    "appDisplayName": "Weather & Forecast",
     "iconFile": "resources/icon.png",
     "wipeColor": "#607d8b",
     "requestedPermissions": [
@@ -15,7 +15,7 @@
     ],
     "i18n": {
       "en": {
-        "name": "Weather_And_Forecast"
+        "name": "Weather & Forecast"
       }
     }
   }
