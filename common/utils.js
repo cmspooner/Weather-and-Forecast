@@ -110,10 +110,12 @@ export function shortenText(text){
   text = text.replace("And", "&");
   text = text.replace("Mixed ", "");
   text = text.replace("Severe", "Bad");
+  text = text.replace("Isolated", "Some")
+  text = text.replace("Scattered", "Some")
   text = text.replace("Thunderstorms", "T-Storms");
   text = text.replace("Partly Cloudy", "Some Clouds");
   text = text.replace("Thundershowers", "T-Showers");
-  if (text == "Isolated Showers" || text == "Scattered Showers")
+  if (text == "Some Showers")
     text = "Some Rain"
   else if (text != "Showers")
     text = text.replace("Showers", "");
