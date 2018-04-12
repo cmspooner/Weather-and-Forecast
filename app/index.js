@@ -141,7 +141,7 @@ weather.onsuccess = (data) => {
   todayHeader.text = "Today";
   todayWeatherImage.href = util.getForecastIcon(data.condition,
                                                 data.description);
-  todayDescription.text = data.description;
+  todayDescription.text = util.shortenText(data.description);
   todayTemperature.text = "Temperature: " + data.temperature + "°"
   todayHigh.text = "High:"
   todayHighVal.text = data.todayHigh + "°"
@@ -217,7 +217,7 @@ weather.onsuccess = (data) => {
   day2Header.text = util.toDay(day+1, "long");
   tomorrowWeatherImage.href = util.getForecastIcon(data.tomorrowCondition,
                                                    data.tomorrowDescription);
-  tomorrowDescription.text = data.tomorrowDescription;
+  tomorrowDescription.text = util.shortenText(data.tomorrowDescription);
   tomorrowHigh.text = "High:"
   tomorrowHighVal.text = data.tomorrowHigh + "°"
   tomorrowLow.text = "Low:"
@@ -227,7 +227,7 @@ weather.onsuccess = (data) => {
   day3Header.text = util.toDay(day+2, "long");
   day3WeatherImage.href = util.getForecastIcon(data.day3Condition,
                                                    data.day3Description);
-  day3Description.text = data.day3Description;
+  day3Description.text = util.shortenText(data.day3Description);
   day3High.text = "High:"
   day3HighVal.text = data.day3High + "°"
   day3Low.text = "Low:"
@@ -237,7 +237,7 @@ weather.onsuccess = (data) => {
   day4Header.text = util.toDay(day+3, "long");
   day4WeatherImage.href = util.getForecastIcon(data.day4Condition,
                                                    data.day4Description);
-  day4Description.text = data.day4Description;
+  day4Description.text = util.shortenText(data.day4Description);
   day4High.text = "High:"
   day4HighVal.text = data.day4High + "°"
   day4Low.text = "Low:"
@@ -257,7 +257,7 @@ weather.onsuccess = (data) => {
   day6Header.text = util.toDay(day+5, "long");
   day6WeatherImage.href = util.getForecastIcon(data.day6Condition,
                                                    data.day6Description);
-  day6Description.text = data.day6Description;
+  day6Description.text = util.shortenText(data.day6Description);
   day6High.text = "High:"
   day6HighVal.text = data.day6High + "°"
   day6Low.text = "Low:"
@@ -267,7 +267,7 @@ weather.onsuccess = (data) => {
   day7Header.text = util.toDay(day+6, "long");
   day7WeatherImage.href = util.getForecastIcon(data.day7Condition,
                                                    data.day7Description);
-  day7Description.text = data.day7Description;
+  day7Description.text = util.shortenText(data.day7Description);
   day7High.text = "High:"
   day7HighVal.text = data.day7High + "°"
   day7Low.text = "Low:"
