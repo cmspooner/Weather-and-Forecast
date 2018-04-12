@@ -11,6 +11,12 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
         <Text>
+          Beta 1.5: Played with formatting
+        </Text>
+        <Text>
+          Beta 1.4.1: Missed day 5 when shortening
+        </Text>
+        <Text>
           Beta 1.4: Shortening Descriptions
         </Text>
         <Text>

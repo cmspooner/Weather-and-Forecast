@@ -16,8 +16,10 @@ if (!device.screen) device.screen = { width: 348, height: 250 };
 console.log(`Dimensions: ${device.screen.width}x${device.screen.height}`);
 
 let loadingScreen = document.getElementById("loadingScreen");
-let loadingText = document.getElementById("loadingText");
-loadingText.text = "Downloading Weather..."
+let loadingText1 = document.getElementById("loadingText1");
+loadingText1.text = "Downloading" 
+let loadingText2 = document.getElementById("loadingText2");
+loadingText2.text = "    Weather..."
 let weatherScreen = document.getElementById("weatherScreen");
 
 let todayHeader = document.getElementById("todayHeader");
@@ -128,6 +130,7 @@ weather.setProvider("yahoo");
 weather.setApiKey("***REMOVED***");
 weather.setMaximumAge(1 * 60 * 1000); 
 weather.setFeelsLike(false);
+weather.setUnit('f');
 
 weather.onsuccess = (data) => {
   weatherScreen.style.display = "inline";
@@ -247,7 +250,7 @@ weather.onsuccess = (data) => {
   day5Header.text = util.toDay(day+4, "long");
   day5WeatherImage.href = util.getForecastIcon(data.day5Condition,
                                                    data.day5Description);
-  day5Description.text = data.day5Description;
+  day5Description.text = util.shortenText(data.day5Description);
   day5High.text = "High:"
   day5HighVal.text = data.day5High + "°"
   day5Low.text = "Low:"
@@ -276,6 +279,7 @@ weather.onsuccess = (data) => {
 
 weather.onerror = (error) => {
   console.log("Weather error " + JSON.stringify(error));
+  weather.fetch();
 }
 
 weather.fetch();

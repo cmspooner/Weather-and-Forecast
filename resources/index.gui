@@ -1,6 +1,8 @@
 <svg class="background">
   <svg id="loadingScreen" display="inline">
-     <text id="loadingText" x="50%" y="50%" fill="white" font-size="30"
+     <text id="loadingText1" x="50%" y="44%" fill="white" font-size="30"
+          font-weight="bold" font-family="Colfax-Bold" text-anchor="middle" text-length="50"/>
+    <text id="loadingText2" x="50%" y="56%" fill="white" font-size="30"
           font-weight="bold" font-family="Colfax-Bold" text-anchor="middle" text-length="50"/>
   </svg>
   <svg id="weatherScreen" display="none">
@@ -69,14 +71,14 @@
 
         <image id="tomorrowWeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="tomorrowHigh" x="75" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="tomorrowHighVal" x="126" y="60" fill="red" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="tomorrowLow" x="175" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="tomorrowLowVal" x="222" y="60" fill="cornflowerblue" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="tomorrowHigh" x="75" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="tomorrowHighVal" x="143" y="60" fill="red" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="tomorrowLow" x="190" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="tomorrowLowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
       </use>
       <!-- Section 3  -->
       <use id="day3Header" href="#view-header" height="30" fill="silver">
@@ -89,14 +91,14 @@
 
         <image id="day3WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day3High" x="75" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day3HighVal" x="126" y="60" fill="red" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day3Low" x="175" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day3LowVal" x="222" y="60" fill="cornflowerblue" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day3High" x="75" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day3HighVal" x="143" y="60" fill="red" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day3Low" x="190" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day3LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
       </use>
 
       <!-- Section 4  -->
@@ -110,14 +112,14 @@
 
         <image id="day4WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day4High" x="75" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day4HighVal" x="126" y="60" fill="red" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day4Low" x="175" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day4LowVal" x="222" y="60" fill="cornflowerblue" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day4High" x="75" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day4HighVal" x="143" y="60" fill="red" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day4Low" x="190" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day4LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
       </use>
 
       <!-- Section 5  -->
@@ -131,14 +133,14 @@
 
         <image id="day5WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day5High" x="75" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day5HighVal" x="126" y="60" fill="red" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day5Low" x="175" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day5LowVal" x="222" y="60" fill="cornflowerblue" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day5High" x="75" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day5HighVal" x="143" y="60" fill="red" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day5Low" x="190" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day5LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
       </use>
       
       <!-- Section 6  -->
@@ -152,14 +154,14 @@
 
         <image id="day6WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day6High" x="75" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day6HighVal" x="126" y="60" fill="red" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day6Low" x="175" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day6LowVal" x="222" y="60" fill="cornflowerblue" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day6High" x="75" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day6HighVal" x="143" y="60" fill="red" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day6Low" x="190" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day6LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
       </use>
       
       <!-- Section 7  -->
@@ -173,14 +175,14 @@
 
         <image id="day7WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day7High" x="75" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day7HighVal" x="126" y="60" fill="red" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day7Low" x="175" y="60" fill="white" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="day7LowVal" x="222" y="60" fill="cornflowerblue" font-size="20"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="day7High" x="75" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day7HighVal" x="143" y="60" fill="red" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day7Low" x="190" y="60" fill="white" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day7LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
       </use>
     </use>
   </svg>
