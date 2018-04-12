@@ -279,7 +279,7 @@ weather.onsuccess = (data) => {
 
 weather.onerror = (error) => {
   console.log("Weather error " + JSON.stringify(error));
-  weather.fetch();
+  //weather.fetch();
 }
 
 weather.fetch();
