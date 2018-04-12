@@ -17,8 +17,8 @@
       <use id="todayHeader" href="#view-header" height="30" fill="silver">
         <set href="#text" attributeName="text-buffer" to="Section 1" />
       </use>
-      <use href="#scrollview-item">
-        <rect width="100%" height="200" fill="fb-black" />
+      <use href="#scrollview-item" height = "310">
+        <rect width="100%" height="100%" fill="fb-black" />
         <text id="todayDescription" x="3" y="25" fill="white" font-size="30"
           font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
         <image id="todayWeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
@@ -52,13 +52,18 @@
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
         <text id="visibility" x="75" y="245" fill="white" font-size="25"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        
+        <text id="sunRise" x="3" y="277" fill="white" font-size="30"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="sunSet" x="3" y="305" fill="white" font-size="30"
+          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
       </use>
         <!-- Section 2 -->
       <use id="day2Header" href="#view-header" height="30" fill="silver">
         <set href="#text" attributeName="text-buffer" to="Section 2" />
       </use>
-      <use href="#scrollview-item">
-        <rect width="100%" height="75" fill="fb-black" />
+      <use href="#scrollview-item" height = "90">
+        <rect width="100%" height="80" fill="fb-black" />
          <text id="tomorrowDescription" x="3" y="25" fill="white" font-size="30"
           font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
 
@@ -77,8 +82,8 @@
       <use id="day3Header" href="#view-header" height="30" fill="silver">
         <set href="#text" attributeName="text-buffer" to="Section 2" />
       </use>
-      <use href="#scrollview-item">
-        <rect width="100%" height="75" fill="fb-black" />
+      <use href="#scrollview-item" height = "90">
+        <rect width="100%" height="100%" fill="fb-black" />
          <text id="day3Description" x="3" y="25" fill="white" font-size="30"
           font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
 
@@ -98,8 +103,8 @@
       <use id="day4Header" href="#view-header" height="30" fill="silver">
         <set href="#text" attributeName="text-buffer" to="Section 2" />
       </use>
-      <use href="#scrollview-item">
-        <rect width="100%" height="75" fill="fb-black" />
+      <use href="#scrollview-item" height = "90">
+        <rect width="100%" height="100%" fill="fb-black" />
          <text id="day4Description" x="3" y="25" fill="white" font-size="30"
           font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
 
@@ -118,8 +123,8 @@
       <use id="day5Header" href="#view-header" height="30" fill="silver">
         <set href="#text" attributeName="text-buffer" to="Section 2" />
       </use>
-      <use href="#scrollview-item">
-        <rect width="100%" height="75" fill="fb-black" />
+      <use href="#scrollview-item" height = "90">
+        <rect width="100%" height="100%" fill="fb-black" />
          <text id="day5Description" x="3" y="25" fill="white" font-size="30"
           font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
 

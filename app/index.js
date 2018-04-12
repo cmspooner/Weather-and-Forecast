@@ -41,6 +41,8 @@ let humidityRisingImage = document.getElementById("humidityRisingImage");
 let pressure = document.getElementById("pressure");
 let visibility = document.getElementById("visibility");
 
+let sunRise = document.getElementById("sunRise");
+let sunSet = document.getElementById("sunSet");
 
 //-------Day 2--------------
 let day2Header = document.getElementById("day2Header");
@@ -148,6 +150,49 @@ weather.onsuccess = (data) => {
   }
   pressure.text = "Pressure: " + data.pressure + " " + data.pressureUnit;
   visibility.text = "Visibility: " + data.visibility + " " + data.visibilityUnit;
+  
+  let sunR = new Date(data.sunrise);
+  console.log(sunR);
+  let sunRH = sunR.getHours();
+  let sunRM = util.zeroPad(sunR.getMinutes());
+  let Rampm = " am"
+  if (preferences.clockDisplay == "12h"){
+    if (sunRH > 12){
+      Rampm = " pm";
+      sunRH -= 12;
+    } else if (sunRH == 12){
+      Rampm = " pm"
+    }else if (sunRH == 0 && Rampm == " am"){
+      sunRH += 12;
+    }
+  } else {
+    Rampm = ""
+  }
+  let sunS = new Date(data.sunrise);
+  let sunSH = sunR.getHours();
+  let sunSM = util.zeroPad(sunR.getMinutes());
+  let Sampm = " am"
+  if (preferences.clockDisplay == "12h"){
+    if (sunSH > 12){
+      Sampm = " pm";
+      sunSH -= 12;
+    } else if (sunSH == 12){
+      Rampm = " pm"
+    }else if (sunSH == 0 && Sampm == " am"){
+      sunSH += 12;
+    }
+  } else {
+    Sampm = ""
+  }
+  
+  if (preferences.clockDisplay == "12h"){
+    sunRise.text = "Sun Rise: " + sunRH + ":" + sunRM + " " + Rampm;
+    sunSet.text = "Sun Set: " + sunSH + ":" + sunSM + " " + Sampm;
+  } else {
+    sunRise.text = "Sun Rise: " + sunRH + ":" + sunRM ;
+    sunSet.text = "Sun Set: " + sunSH + ":" + sunRM ;
+  }
+
   
   //--------------Day 2--------------
   day2Header.text = util.toDay(day+1, "long");
