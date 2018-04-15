@@ -3,11 +3,14 @@ console.log("Weather & Forecast Started");
 /*
  * Entry point for the watch app
  */
+import { me } from "appbit";
 import document from "document";
+import * as fs from "fs";
 
 import * as messaging from "messaging";
 import { display } from "display";
 import { preferences } from "user-settings";
+import { units } from "user-settings";
 
 import * as util from "../common/utils";
 
@@ -15,12 +18,20 @@ import { me as device } from "device";
 if (!device.screen) device.screen = { width: 348, height: 250 };
 console.log(`Dimensions: ${device.screen.width}x${device.screen.height}`);
 
+const SETTINGS_TYPE = "cbor";
+const SETTINGS_FILE = "settings.cbor";
+
 let loadingScreen = document.getElementById("loadingScreen");
 let loadingText1 = document.getElementById("loadingText1");
 loadingText1.text = "Downloading" 
 let loadingText2 = document.getElementById("loadingText2");
-loadingText2.text = "    Weather..."
+loadingText2.text = "  Weather..."
 let weatherScreen = document.getElementById("weatherScreen");
+
+let locationHeader = document.getElementById("locationHeader");
+locationHeader.text = "hello"
+
+let seperatorBar = document.getElementById("seperatorBar");
 
 let todayHeader = document.getElementById("todayHeader");
 let todayDescription = document.getElementById("todayDescription");
@@ -106,6 +117,9 @@ let day7HighVal = document.getElementById("day7HighVal");
 let day7Low = document.getElementById("day7Low");
 let day7LowVal = document.getElementById("day7LowVal");
 
+let settings = loadSettings();
+//fs.unlinkSync(SETTINGS_FILE);
+console.log("Settings: " + settings.color);
 
 messaging.peerSocket.onmessage = evt => {
   console.log(`App received: ${JSON.stringify(evt)}`);
@@ -113,12 +127,17 @@ messaging.peerSocket.onmessage = evt => {
     let degreesF = !JSON.parse(evt.data.newValue);
     console.log(`Fahrenheit: ${degreesF}`);
     if (degreesF)
-      weather.setUnit('f')
+      settings.unit = 'f';
     else
-      weather.setUnit('c')
+      settings.unit = 'c';
+    applySettings(settings.unit, settings.color)
     weather.setMaximumAge(0); 
     weather.fetch();
     weather.setMaximumAge(1 * 60 * 1000); 
+  }
+  if (evt.data.key === "color" && evt.data.newValue) {
+    settings.color = JSON.parse(evt.data.newValue);
+    applySettings(settings.unit, settings.color);
   }
 }
 
@@ -130,7 +149,9 @@ weather.setProvider("yahoo");
 weather.setApiKey("dj0yJmk9TTkyWW5SNG5rT0JOJmQ9WVdrOVRVMURkRmhhTlRBbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD00MA--");
 weather.setMaximumAge(1 * 60 * 1000); 
 weather.setFeelsLike(false);
-weather.setUnit('f');
+weather.setUnit(units.temperature.toLowerCase());
+
+applySettings(settings.unit, settings.color);
 
 weather.onsuccess = (data) => {
   weatherScreen.style.display = "inline";
@@ -139,6 +160,8 @@ weather.onsuccess = (data) => {
   
   let today = new Date();
   let day = today.getDay();
+  
+  locationHeader.text = data.location;
   
   //------------Today----------------
   todayHeader.text = "Today";
@@ -171,7 +194,7 @@ weather.onsuccess = (data) => {
       humidityRisingImage.href = "icons/weather/windArrow.png";
       break;
   }
-  pressure.text = "Pressure: " + data.pressure + " " + data.pressureUnit;
+  pressure.text = "Pressure: " + util.round2(data.pressure*0.0295301) + " " + data.pressureUnit;
   visibility.text = "Visibility: " + data.visibility + " " + data.visibilityUnit;
   
   let sunR = new Date(data.sunrise);
@@ -280,6 +303,29 @@ weather.onsuccess = (data) => {
 weather.onerror = (error) => {
   console.log("Weather error " + JSON.stringify(error));
   //weather.fetch();
+}
+function applySettings(unit, color){
+  weather.setUnit(unit);
+  console.log("Color: " + color)
+  seperatorBar.style.fill = color;
+}
+
+me.onunload = saveSettings;
+
+function loadSettings() {
+  try {
+    return fs.readFileSync(SETTINGS_FILE, SETTINGS_TYPE);
+  } catch (ex) {
+    // Defaults
+    return {
+      unit : 'f',
+      color : "steelblue"
+    }
+  }
+}
+
+function saveSettings() {
+  fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
 }
 
 weather.fetch();

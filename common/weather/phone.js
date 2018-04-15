@@ -20,7 +20,7 @@ export default class Weather {
       // We are receiving a request from the app
       if (evt.data !== undefined && evt.data[WEATHER_MESSAGE_KEY] !== undefined) {
         let message = evt.data[WEATHER_MESSAGE_KEY];
-        prv_fetchRemote(message.provider, message.apiKey, message.unit, message.feelsLike);
+        prv_fetchRemote(message.provider, message.apiKey, message.unit, message.feelsLike, message.autoLocation);
       }
     });
   }
@@ -77,7 +77,7 @@ export default class Weather {
 /*********** PRIVATE FUNCTIONS  ************/
 /*******************************************/
 
-function prv_fetchRemote(provider, apiKey, unit, feelsLike) {
+function prv_fetchRemote(provider, apiKey, unit, feelsLike, autoLocation) {
   geolocation.getCurrentPosition(
     (position) => {
       prv_fetch(provider, apiKey, unit, feelsLike, position.coords.latitude, position.coords.longitude,
@@ -112,7 +112,8 @@ function prv_fetchRemote(provider, apiKey, unit, feelsLike) {
         console.log("Location Error : " + error.message); 
       }
     }, 
-    {"enableHighAccuracy" : false, "maximumAge" : 1000 * 1800});
+    {"enableHighAccuracy" : false, "maximumAge" : 1000 * 1800}
+  );
 }
 
 function prv_fetch(provider, apiKey, unit, feelsLike, latitude, longitude, success, error) {
@@ -311,9 +312,12 @@ function prv_queryDarkskyWeather(apiKey, feelsLike, latitude, longitude, success
   .catch((err) => { if(error) error(err); });
 };
 
+
+
 function prv_queryYahooWeather(latitude, longitude, unit, success, error) {
   //var url = 'https://query.yahooapis.com/v1/public/yql?q=select astronomy, location.city, item.condition from weather.forecast where woeid in '+ '(select woeid from geo.places(1) where text=\'(' + latitude+','+longitude+')\') and u=\'c\'&format=json';
   var url = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in ' + '(select woeid from geo.places(1) where text=\'(' + latitude+','+longitude+')\') and u=\''+ unit +'\'&format=json';
+  //var url = 'https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in ' + '(select woeid from geo.places(1) where text=\'(' + "Concord" +','+ "NH" +')\') and u=\''+ unit +'\'&format=json';
   
   console.log(url);
   fetch(encodeURI(url))
@@ -321,7 +325,7 @@ function prv_queryYahooWeather(latitude, longitude, unit, success, error) {
     response.json()
     .then((data) => {
       
-      if(data.query === undefined || data.query.results === undefined || data.query.results.channel === undefined) {
+      if(data.query === undefined || data.query.results === undefined || data.query.results === null || data.query.results.channel === undefined) {
         if(error) error(data);
         return;
       }
