@@ -10,13 +10,6 @@ function mySettings(props) {
       </Section>
        <Section
         title={<Text bold align="center">Seperator Bar Color</Text>}>
-        <Toggle
-          settingsKey="seperatorToggle"
-          label="Color based on day's progress"
-        />
-        <Text align="center">
-          Color when not over-ridden
-        </Text>
         <ColorSelect
           settingsKey="color"
           colors={[
@@ -72,6 +65,9 @@ function mySettings(props) {
       </Section>
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
+        <Text>
+          Beta 1.8.1: Copied a little too much from KearsageTime, removed exta unused setting!
+        </Text>
         <Text>
           Beta 1.8: Bar color now setable and settings file used properly!
         </Text>
