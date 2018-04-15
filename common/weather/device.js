@@ -9,6 +9,7 @@ export default class Weather {
     this._weather = undefined;
     this._maximumAge = 0;
     this._unit = 'c'
+    this._autoLocation = true;
 
     this.onerror = undefined;
     this.onsuccess = undefined;
@@ -36,6 +37,10 @@ export default class Weather {
       this._unit = 'f';
     else
       this._unit = 'c'
+  }
+  
+  setAutoLocation(auto){
+    this._autoLocation = auto;
   }
   
   setProvider(provider) {
@@ -66,6 +71,7 @@ export default class Weather {
       message[WEATHER_MESSAGE_KEY].provider  = this._provider;
       message[WEATHER_MESSAGE_KEY].feelsLike = this._feelsLike;
       message[WEATHER_MESSAGE_KEY].unit = this._unit;
+      message[WEATHER_MESSAGE_KEY].autoLocation = this._uautoLocation;
       peerSocket.send(message);
     }
     else {
