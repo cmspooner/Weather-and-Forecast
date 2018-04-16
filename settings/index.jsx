@@ -68,7 +68,7 @@ function mySettings(props) {
         <Text>
           Please don't hesitiate to contact me with questions or suggestions. This and all my other apps will always be free and Open Source. If you really like my app please considder buying me a coffee (or more likely electonic components that end up in my classroom). Thanks!
         </Text>
-        <Link source="mailto:cmspooner@gmail.com">
+        <Link source="https://rawgit.com/cmspooner/Weather-and-Forecast/master/settings/email.html">
           <TextImageRow
             label="Email"
             sublabel="cmspooner@gmail.com"
@@ -92,6 +92,9 @@ function mySettings(props) {
       </Section>
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
+        <Text>
+          Beta 1.9.1: Resized settings images and fixed email
+        </Text>
         <Text>
           Beta 1.9: Added links to settings
         </Text>
