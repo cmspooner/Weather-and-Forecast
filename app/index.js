@@ -130,14 +130,15 @@ messaging.peerSocket.onmessage = evt => {
       settings.unit = 'f';
     else
       settings.unit = 'c';
-    applySettings(settings.unit, settings.color)
+    applySettings(settings)
     weather.setMaximumAge(0); 
     weather.fetch();
     weather.setMaximumAge(1 * 60 * 1000); 
   }
   if (evt.data.key === "color" && evt.data.newValue) {
     settings.color = JSON.parse(evt.data.newValue);
-    applySettings(settings.unit, settings.color);
+    console.log("New Color: " + settings.color);
+    applySettings(settings);
   }
 }
 
@@ -151,7 +152,7 @@ weather.setMaximumAge(1 * 60 * 1000);
 weather.setFeelsLike(false);
 weather.setUnit(units.temperature.toLowerCase());
 
-applySettings(settings.unit, settings.color);
+applySettings(settings);
 
 weather.onsuccess = (data) => {
   weatherScreen.style.display = "inline";
@@ -304,10 +305,10 @@ weather.onerror = (error) => {
   console.log("Weather error " + JSON.stringify(error));
   //weather.fetch();
 }
-function applySettings(unit, color){
-  weather.setUnit(unit);
-  console.log("Color: " + color)
-  seperatorBar.style.fill = color;
+function applySettings(settings){
+  weather.setUnit(settings.unit);
+  console.log("Color: " + settings.color)
+  seperatorBar.style.fill = settings.color;
 }
 
 me.onunload = saveSettings;
@@ -319,7 +320,7 @@ function loadSettings() {
     // Defaults
     return {
       unit : 'f',
-      color : "steelblue"
+      color : '#000000'
     }
   }
 }
