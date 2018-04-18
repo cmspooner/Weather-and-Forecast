@@ -93,6 +93,24 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
         <Text>
+          Beta 1.10.6.1: fixed length check.
+        </Text>
+        <Text>
+          Beta 1.10.6: Added click texts.
+        </Text>
+        <Text>
+          Beta 1.10.5: Added force text.
+        </Text>
+        <Text>
+          Beta 1.10.4: Maybe better now??.
+        </Text>
+        <Text>
+          Beta 1.10.3: Added Click to refresh.
+        </Text>
+        <Text>
+          Beta 1.10.2: More start-up tweaks.
+        </Text>
+        <Text>
           Beta 1.10.1: removed start fetch.
         </Text>
         <Text>

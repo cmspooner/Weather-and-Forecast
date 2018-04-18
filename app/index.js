@@ -21,11 +21,18 @@ console.log(`Dimensions: ${device.screen.width}x${device.screen.height}`);
 const SETTINGS_TYPE = "cbor";
 const SETTINGS_FILE = "settings.cbor";
 
+let background = document.getElementById("clickbg");
+
 let loadingScreen = document.getElementById("loadingScreen");
+
 let loadingText1 = document.getElementById("loadingText1");
-loadingText1.text = "Downloading" 
 let loadingText2 = document.getElementById("loadingText2");
-loadingText2.text = "  Weather..."
+let loadingText3 = document.getElementById("loadingText3");
+
+loadingText1.text = "Downloading"
+loadingText2.text = "Weather"
+loadingText3.text = "Click to Force Update"
+
 let weatherScreen = document.getElementById("weatherScreen");
 
 let locationHeader = document.getElementById("locationHeader");
@@ -121,19 +128,34 @@ let settings = loadSettings();
 //fs.unlinkSync(SETTINGS_FILE);
 console.log("Settings: " + settings.color);
 
+var clkMsgs =["Forcing Download",
+              "Trying Again",
+              "Really Trying this Time",
+              "Maybe This Will Work",
+              "How about now?",
+              "Email the Dev!"];
+var msg = 0;
+
+messaging.peerSocket.onopen = function() {
+  weather.fetch();
+}
+
 messaging.peerSocket.onmessage = evt => {
   console.log(`App received: ${JSON.stringify(evt)}`);
   if (evt.data.key === "unitToggle" && evt.data.newValue) {
     let degreesF = !JSON.parse(evt.data.newValue);
     console.log(`Fahrenheit: ${degreesF}`);
+    var oldUnit = settings.unit;
     if (degreesF)
       settings.unit = 'f';
     else
       settings.unit = 'c';
-    applySettings(settings)
-    weather.setMaximumAge(0); 
-    weather.fetch();
-    weather.setMaximumAge(10 * 60 * 1000); 
+    if (oldUnit != settings.unit){
+      applySettings(settings)
+      weather.setMaximumAge(0); 
+      weather.fetch();
+      weather.setMaximumAge(10 * 60 * 1000); 
+    }
   }
   if (evt.data.key === "color" && evt.data.newValue) {
     settings.color = JSON.parse(evt.data.newValue);
@@ -148,7 +170,7 @@ import Weather from '../common/weather/device';
 let weather = new Weather();
 weather.setProvider("yahoo"); 
 weather.setApiKey("dj0yJmk9TTkyWW5SNG5rT0JOJmQ9WVdrOVRVMURkRmhhTlRBbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD00MA--");
-weather.setMaximumAge(1 * 60 * 1000); 
+weather.setMaximumAge(10 * 60 * 1000); 
 weather.setFeelsLike(false);
 weather.setUnit(units.temperature.toLowerCase());
 
@@ -304,13 +326,23 @@ weather.onsuccess = (data) => {
 weather.onerror = (error) => {
   console.log("Weather error " + JSON.stringify(error));
   loadingText1.text = "Update Failed!";
-  loadingText2.text = error;
+  loadingText2.text = "Click to Try Again";
   
 }
 function applySettings(settings){
   weather.setUnit(settings.unit);
   console.log("Color: " + settings.color)
   seperatorBar.style.fill = settings.color;
+}
+
+background.onclick = function(evt) {
+  console.log("Click");
+  loadingText1.text = "Downloading";
+  loadingText2.text = "Weather";
+  loadingText3.text = clkMsgs[msg];
+  if (msg < clkMsgs.length-1)
+    msg++;
+  weather.fetch();
 }
 
 me.onunload = saveSettings;
@@ -330,5 +362,3 @@ function loadSettings() {
 function saveSettings() {
   fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
 }
-
-//weather.fetch();

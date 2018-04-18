@@ -1,9 +1,12 @@
 <svg class="background">
+  <rect id="clickbg" pointer-events="visible"/>
   <svg id="loadingScreen" display="inline">
-     <text id="loadingText1" x="50%" y="44%" fill="white" font-size="30"
+    <text id="loadingText1" x="50%" y="44%" fill="white" font-size="30"
           font-weight="bold" font-family="Colfax-Bold" text-anchor="middle" text-length="50"/>
     <text id="loadingText2" x="50%" y="56%" fill="white" font-size="30"
           font-weight="bold" font-family="Colfax-Bold" text-anchor="middle" text-length="50"/>
+    <text id="loadingText3" x="50%" y="95%" fill="white" font-size="18"
+          font-weight="bold" font-family="Colfax-Regular" text-anchor="middle" text-length="50"/>
   </svg>
   <svg id="weatherScreen" display="none">
     <defs>
