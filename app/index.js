@@ -133,7 +133,7 @@ messaging.peerSocket.onmessage = evt => {
     applySettings(settings)
     weather.setMaximumAge(0); 
     weather.fetch();
-    weather.setMaximumAge(1 * 60 * 1000); 
+    weather.setMaximumAge(10 * 60 * 1000); 
   }
   if (evt.data.key === "color" && evt.data.newValue) {
     settings.color = JSON.parse(evt.data.newValue);
@@ -303,7 +303,9 @@ weather.onsuccess = (data) => {
 
 weather.onerror = (error) => {
   console.log("Weather error " + JSON.stringify(error));
-  //weather.fetch();
+  loadingText1.text = "Update Failed!";
+  loadingText2.text = error;
+  
 }
 function applySettings(settings){
   weather.setUnit(settings.unit);
@@ -329,4 +331,4 @@ function saveSettings() {
   fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
 }
 
-weather.fetch();
+//weather.fetch();
