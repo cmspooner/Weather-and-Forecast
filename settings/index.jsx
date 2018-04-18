@@ -93,6 +93,12 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
         <Text>
+          Beta 1.10.1: removed start fetch.
+        </Text>
+        <Text>
+          Beta 1.10: removed start fetch.
+        </Text>
+        <Text>
           Beta 1.9.1: Resized settings images and fixed email
         </Text>
         <Text>
