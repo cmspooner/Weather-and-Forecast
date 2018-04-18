@@ -1,7 +1,9 @@
 import { peerSocket } from "messaging";
 import { geolocation } from "geolocation";
+import { outbox } from "file-transfer";
+import * as cbor from "cbor";
 
-import { WEATHER_MESSAGE_KEY, Conditions } from './common.js';
+import { WEATHER_MESSAGE_KEY, WEATHER_DATA_FILE, WEATHER_ERROR_FILE, Conditions } from './common.js';
 
 export default class Weather {
   
@@ -20,7 +22,7 @@ export default class Weather {
       // We are receiving a request from the app
       if (evt.data !== undefined && evt.data[WEATHER_MESSAGE_KEY] !== undefined) {
         let message = evt.data[WEATHER_MESSAGE_KEY];
-        prv_fetchRemote(message.provider, message.apiKey, message.unit, message.feelsLike, message.autoLocation);
+        prv_fetchRemote(message.provider, message.apiKey, message.feelsLike, message.unit);
       }
     });
   }
@@ -33,7 +35,7 @@ export default class Weather {
     if (unit == "f")
       this._unit = 'f';
     else
-      this._unit = 'c'
+      this._unit = 'c';
   }
   
   setProvider(provider) {
@@ -58,8 +60,8 @@ export default class Weather {
     
     geolocation.getCurrentPosition(
       (position) => {
-        console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
-        prv_fetch(this._provider, this._apiKey, this._unit, this._feelsLike, position.coords.latitude, position.coords.longitude, 
+        //console.log("Latitude: " + position.coords.latitude + " Longitude: " + position.coords.longitude);
+        prv_fetch(this._provider, this._apiKey, this._feelsLike, this_.unit, position.coords.latitude, position.coords.longitude, 
               (data) => {
                 this._weather = data;
                 if(this.onsuccess) this.onsuccess(data);
@@ -77,46 +79,32 @@ export default class Weather {
 /*********** PRIVATE FUNCTIONS  ************/
 /*******************************************/
 
-function prv_fetchRemote(provider, apiKey, unit, feelsLike, autoLocation) {
+function prv_fetchRemote(provider, apiKey, feelsLike, unit) {
   geolocation.getCurrentPosition(
     (position) => {
-      prv_fetch(provider, apiKey, unit, feelsLike, position.coords.latitude, position.coords.longitude,
+      prv_fetch(provider, apiKey, feelsLike, unit, position.coords.latitude, position.coords.longitude,
           (data) => {
-            if (peerSocket.readyState === peerSocket.OPEN) {
-              let answer = {};
-              answer[WEATHER_MESSAGE_KEY] = data;
-              peerSocket.send( answer );
-            } else {
-              console.log("Error: Connection is not open with the device");
-            }
+            data.provider = provider;
+            outbox
+              .enqueue(WEATHER_DATA_FILE, cbor.encode(data))
+              .catch(error => console.log("Failed to send weather: " + error));
           },
           (error) => { 
-            if (peerSocket.readyState === peerSocket.OPEN) {
-              let answer = {};
-              answer[WEATHER_MESSAGE_KEY] = { error : error };  
-              peerSocket.send( answer );
-            }
-            else {
-              console.log("Error : " + JSON.stringify(error) + " " + error); 
-            }
+            outbox
+              .enqueue(WEATHER_ERROR_FILE, cbor.encode({ error : error }))
+              .catch(error => console.log("Failed to send weather error: " + error));
           }
       );
     }, 
     (error) => {
-      if (peerSocket.readyState === peerSocket.OPEN) {
-        let answer = {};
-        answer[WEATHER_MESSAGE_KEY] = { error : error };  
-        peerSocket.send( answer );
-      }
-      else {
-        console.log("Location Error : " + error.message); 
-      }
+      outbox
+        .enqueue(WEATHER_ERROR_FILE, cbor.encode({ error : error }))
+        .catch(error => console.log("Failed to send weather error: " + error));
     }, 
-    {"enableHighAccuracy" : false, "maximumAge" : 1000 * 1800}
-  );
+    {"enableHighAccuracy" : false, "maximumAge" : 1000 * 1800});
 }
 
-function prv_fetch(provider, apiKey, unit, feelsLike, latitude, longitude, success, error) {
+function prv_fetch(provider, apiKey, feelsLike, unit, latitude, longitude, success, error) {
   // console.log("Latitude: " + latitude + " Longitude: " + longitude);
   if( provider === "owm" ) {
     prv_queryOWMWeather(apiKey, latitude, longitude, success, error);
