@@ -93,76 +93,7 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
         <Text>
-          Beta 1.10.6.1: fixed length check.
-        </Text>
-        <Text>
-          Beta 1.10.6: Added click texts.
-        </Text>
-        <Text>
-          Beta 1.10.5: Added force text.
-        </Text>
-        <Text>
-          Beta 1.10.4: Maybe better now??.
-        </Text>
-        <Text>
-          Beta 1.10.3: Added Click to refresh.
-        </Text>
-        <Text>
-          Beta 1.10.2: More start-up tweaks.
-        </Text>
-        <Text>
-          Beta 1.10.1: removed start fetch.
-        </Text>
-        <Text>
-          Beta 1.10: removed start fetch.
-        </Text>
-        <Text>
-          Beta 1.9.1: Resized settings images and fixed email
-        </Text>
-        <Text>
-          Beta 1.9: Added links to settings
-        </Text>
-        <Text>
-          Beta 1.8.1: Copied a little too much from KearsageTime, removed exta unused setting!
-        </Text>
-        <Text>
-          Beta 1.8: Bar color now setable and settings file used properly!
-        </Text>
-        <Text>
-          Beta 1.7: ?Undocumented fix, probably from phone?
-        </Text>
-        <Text>
-          Beta 1.6: Added Location Info
-        </Text>
-        <Text>
-          Beta 1.5.2: Fixed Padding
-        </Text>
-        <Text>
-          Beta 1.5.1: Fixed Crash Error
-        </Text>
-        <Text>
-          Beta 1.5: Played with formatting
-        </Text>
-        <Text>
-          Beta 1.4.1: Missed day 5 when shortening
-        </Text>
-        <Text>
-          Beta 1.4: Shortening Descriptions
-        </Text>
-        <Text>
-          Beta 1.3: Added 2 more days and fixed stupid variable case error
-        </Text>
-        <Text>
-          Beta 1.2: Areas Right size and Sun rise/set
-        </Text>
-        <Text>
-          Beta 1.1: Loading Screen
-        </Text>
-        <Text>
-          Beta 1.0: Works
-        </Text>
-        <Text>
-          Beta 0.1: Starting
+          1.0: First official release
         </Text>
       </Section>
     </Page>
