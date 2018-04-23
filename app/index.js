@@ -169,7 +169,7 @@ import Weather from '../common/weather/device';
 
 let weather = new Weather();
 weather.setProvider("yahoo"); 
-weather.setApiKey("***REMOVED***");
+weather.setApiKey("dj0yJmk9TTkyWW5SNG5rT0JOJmQ9WVdrOVRVMURkRmhhTlRBbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD00MA--");
 weather.setMaximumAge(10 * 60 * 1000); 
 weather.setFeelsLike(false);
 weather.setUnit(units.temperature.toLowerCase());
