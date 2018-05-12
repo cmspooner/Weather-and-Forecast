@@ -44,6 +44,34 @@ let days = [
   "Saturday"
 ]
 
+export function minToTime(min){
+  let hours = parseInt(min/60);
+  let mins = parseInt(min%60);
+  let ampm = "a";
+  
+  if (hours > 12){
+  	hours -= 12;
+    ampm = "p";
+  } else if (hours == 12){
+    ampm = "p";
+  } else if (hours == 0){
+  	hours += 12;
+  }
+    
+  let time = hours + ":" + zeroPad(mins) + ampm
+  
+  //console.log(time);
+  return time;
+}
+
+export function hourAndMinToMin(hour, min){
+  return hour*60 + min;
+}
+
+//useing pre-converted 24 hour time
+export function hourAndMinToTime(hour, min){
+  return minToTime(hourAndMinToMin(hour, min));
+}
 
 // Add zero in front of numbers < 10
 export function zeroPad(i) {

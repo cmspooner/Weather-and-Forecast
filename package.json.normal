@@ -1,8 +1,8 @@
 {
   "fitbit": {
-    "appUUID": "ae653281-2f9f-452c-8e60-6feb63bec0cd",
+    "appUUID": "7840fc07-7a9a-452d-b259-3368c61a9b4d",
     "appType": "app",
-    "appDisplayName": "WeatherCast Beta",
+    "appDisplayName": "WeatherCast",
     "iconFile": "resources/icon.png",
     "wipeColor": "#607d8b",
     "requestedPermissions": [

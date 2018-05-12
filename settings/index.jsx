@@ -66,7 +66,7 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Contact Me</Text>}>
         <Text>
-          Please don't hesitiate to contact me with questions or suggestions. This and all my other apps will always be free and Open Source. If you really like my app please considder buying me a coffee (or more likely electonic components that end up in my classroom). Thanks!
+          Please don't hesitiate to contact me with questions or suggestions; but be sure to let me know which app or watchface you are talking about. This and all my other apps will always be free and Open Source. If you really like my app please considder buying me a coffee (or more likely electonic components that end up in my classroom). Thanks!
         </Text>
         <Link source="https://rawgit.com/cmspooner/Weather-and-Forecast/master/settings/email.html">
           <TextImageRow
@@ -92,6 +92,42 @@ function mySettings(props) {
       </Section>
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
+         <Text>
+          2.3.1 Beta: Moved timestamp to today header
+        </Text>
+        <Text>
+          2.3 Beta: Added timestamp for old weather
+        </Text>
+        <Text>
+          2.2 Beta: Changed Icon
+        </Text>
+        <Text>
+          2.1 Beta: Adding Weather saving
+        </Text>
+        <Text>
+          1.4.1: Added Bttery %
+        </Text>
+        <Text>
+          1.4: Tap to change stats in odo
+        </Text>
+        <Text>
+          1.3: Now with images for Speed and Odo
+        </Text>
+        <Text>
+          1.2.3: Changed how stripes toggels work
+        </Text>
+        <Text>
+          1.2.2: Pinstripes showing now?
+        </Text>
+        <Text>
+          1.2.1: Pinstripes thicker
+        </Text>
+        <Text>
+          1.2: Pinstripes thicker
+        </Text>
+        <Text>
+          1.1: Lots of little fixes icluding fs writing
+        </Text>
         <Text>
           1.0: First official release
         </Text>

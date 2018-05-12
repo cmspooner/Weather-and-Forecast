@@ -20,6 +20,7 @@ console.log(`Dimensions: ${device.screen.width}x${device.screen.height}`);
 
 const SETTINGS_TYPE = "cbor";
 const SETTINGS_FILE = "settings.cbor";
+const WEATHER_FILE = "weather.cbor";
 
 let background = document.getElementById("clickbg");
 
@@ -125,16 +126,39 @@ let day7Low = document.getElementById("day7Low");
 let day7LowVal = document.getElementById("day7LowVal");
 
 let settings = loadSettings();
+let weatherData = loadWeather();
+if (weatherData == null){
+  loadingText1.text = "Downloading"
+  loadingText2.text = "Weather"
+  loadingText3.text = "Click to Force Update"
+} else {
+  var today = new Date()
+  var timeStamp = new Date(weatherData.timestamp);
+  if (timeStamp.getDate()!=today.getDate())
+    timeStamp = timeStamp.getMonth()+1+"/"+timeStamp.getDate()
+  else
+    timeStamp = util.hourAndMinToTime(timeStamp.getHours(), timeStamp.getMinutes());
+  //weatherData.location += " as of " + timeStamp;
+  todayHeader.text = "As of " + timeStamp;
+  console.log(weatherData.location);
+  drawWeather(weatherData);
+}
+
+
 //fs.unlinkSync(SETTINGS_FILE);
 console.log("Settings: " + settings.color);
 
 var clkMsgs =["Forcing Download",
-              "Trying Again",
-              "Really Trying this Time",
+              "Trying again",
+              "Really trying this time",
               "Maybe This Will Work",
               "How about now?",
+              "Try syncing your phone",
+              "Maybe reboot your phone?",
               "Email the Dev!"];
 var msg = 0;
+
+
 
 messaging.peerSocket.onopen = function() {
   weather.fetch();
@@ -169,7 +193,7 @@ import Weather from '../common/weather/device';
 
 let weather = new Weather();
 weather.setProvider("yahoo"); 
-weather.setApiKey("dj0yJmk9TTkyWW5SNG5rT0JOJmQ9WVdrOVRVMURkRmhhTlRBbWNHbzlNQS0tJnM9Y29uc3VtZXJzZWNyZXQmeD00MA--");
+weather.setApiKey("");
 weather.setMaximumAge(10 * 60 * 1000); 
 weather.setFeelsLike(false);
 weather.setUnit(units.temperature.toLowerCase());
@@ -177,6 +201,14 @@ weather.setUnit(units.temperature.toLowerCase());
 applySettings(settings);
 
 weather.onsuccess = (data) => {
+  weatherData = data;
+  todayHeader.text = "Currently";
+
+  drawWeather(data);
+}
+  
+  
+function drawWeather(data){
   weatherScreen.style.display = "inline";
   loadingScreen.style.display = "none";
   console.log("Weather is " + JSON.stringify(data));
@@ -187,7 +219,7 @@ weather.onsuccess = (data) => {
   locationHeader.text = data.location;
   
   //------------Today----------------
-  todayHeader.text = "Today";
+  //todayHeader.text = "Today";
   todayWeatherImage.href = util.getForecastIcon(data.condition,
                                                 data.description);
   todayDescription.text = util.shortenText(data.description);
@@ -359,6 +391,20 @@ function loadSettings() {
   }
 }
 
+function loadWeather(){
+  try {
+    return fs.readFileSync(WEATHER_FILE, SETTINGS_TYPE);
+  } catch (ex) {
+    // Defaults
+    return null;
+  }
+}
+
 function saveSettings() {
   fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
+  saveWeather();
+}
+
+function saveWeather() {
+  fs.writeFileSync(WEATHER_FILE, weatherData, SETTINGS_TYPE);
 }
