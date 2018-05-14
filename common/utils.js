@@ -163,7 +163,7 @@ export function wordStartsWith(letter, text){
 }
 
 export function getWeatherIcon(data){
-  switch(data.conditionCode){
+  switch(data.condition){
     case 0: //ClearSky
       if (data.isDay)
         return "../resources/icons/weather/whiteSun.png"

@@ -5,10 +5,12 @@ function mySettings(props) {
         title={<Text bold align="center">Weather</Text>}>
          <Toggle
            settingsKey="unitToggle"
-           label="US or Metric Units"
+           label="US or Metric Units" 
+           onChange={value => props.settingsStorage.setItem('unit', value.toString())}
          />
+        <Text>Temperatures in degrees {props.settingsStorage.getItem('unit') == "true" ? "celsius" : "fahrenheit"}</Text>
       </Section>
-       <Section
+      <Section
         title={<Text bold align="center">Seperator Bar Color</Text>}>
         <ColorSelect
           settingsKey="color"
@@ -66,7 +68,7 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Contact Me</Text>}>
         <Text>
-          Please don't hesitiate to contact me with questions or suggestions; but be sure to let me know which app or watchface you are talking about. This and all my other apps will always be free and Open Source. If you really like my app please considder buying me a coffee (or more likely electonic components that end up in my classroom). Thanks!
+          Please don't hesitate to contact me with questions or suggestions; but be sure to let me know which app or watchface you are talking about. This and all my other apps will always be free and Open Source. If you really like my app please consider buying me a coffee (or more likely electronic components that end up in my classroom). Thanks!
         </Text>
         <Link source="https://rawgit.com/cmspooner/Weather-and-Forecast/master/settings/email.html">
           <TextImageRow
@@ -92,6 +94,15 @@ function mySettings(props) {
       </Section>
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
+        <Text>
+          2.5 Beta: Settings now shows units
+        </Text>
+        <Text>
+          2.4.1 Beta: Day/Night Icon Fixed, no really this time
+        </Text>
+        <Text>
+          2.4 Beta: Day/Night Icon Fixed
+        </Text>
          <Text>
           2.3.1 Beta: Moved timestamp to today header
         </Text>

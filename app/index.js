@@ -220,8 +220,7 @@ function drawWeather(data){
   
   //------------Today----------------
   //todayHeader.text = "Today";
-  todayWeatherImage.href = util.getForecastIcon(data.condition,
-                                                data.description);
+  todayWeatherImage.href = util.getWeatherIcon(data);
   todayDescription.text = util.shortenText(data.description);
   todayTemperature.text = "Temperature: " + data.temperature + "°"
   todayHigh.text = "High:"
