@@ -20,43 +20,14 @@ console.log(`Dimensions: ${device.screen.width}x${device.screen.height}`);
 
 let background = document.getElementById("clickbg");
 
-
-
-
-
 let settings = loadSettings();
 let weatherData = loadWeather();
 if (weatherData == null){
+  console.log("No weather")
   drawLoadingScreen();
 } else {
-  loadWeather();
+  drawLoadingWeather();
 }
-
-function drawLoadingScreen(){
-  let loadingText1 = document.getElementById("loadingText1");
-  let loadingText2 = document.getElementById("loadingText2");
-  let loadingText3 = document.getElementById("loadingText3");
-
-  loadingText1.text = "Downloading"
-  loadingText2.text = "Weather"
-  loadingText3.text = "Click to Force Update"
-}
-
-function loadWeather(){
-  let todayHeader = document.getElementById("todayHeader");
-  
-  let today = new Date()
-  let timeStamp = new Date(weatherData.timestamp);
-  if (timeStamp.getDate()!=today.getDate())
-    timeStamp = timeStamp.getMonth()+1+"/"+timeStamp.getDate()
-  else
-    timeStamp = util.hourAndMinToTime(timeStamp.getHours(), timeStamp.getMinutes());
-  //weatherData.location += " as of " + timeStamp;
-  todayHeader.text = "As of " + timeStamp;
-  console.log(weatherData.location);
-  drawWeather(weatherData);
-}
-
 
 //fs.unlinkSync(SETTINGS_FILE);
 console.log("Settings: " + settings.color);
@@ -70,8 +41,6 @@ var clkMsgs =["Forcing Download",
               "Maybe reboot your phone?",
               "Email the Dev!"];
 var msg = 0;
-
-
 
 messaging.peerSocket.onopen = function() {
   weather.fetch();
@@ -99,6 +68,7 @@ messaging.peerSocket.onmessage = evt => {
     console.log("New Color: " + settings.color);
     applySettings(settings);
   }
+  saveSettings();
 }
 
 //----------------Weather Setup------------------------
@@ -114,10 +84,10 @@ weather.setUnit(units.temperature.toLowerCase());
 applySettings(settings);
 
 weather.onsuccess = (data) => {
-  loadedWeather(data);
+  drawLoadedWeather(data);
 }
 
-function loadedWeather(data){
+function drawLoadedWeather(data){
   let todayHeader = document.getElementById("todayHeader");
   weatherData = data;
   todayHeader.text = "Currently";
@@ -125,6 +95,31 @@ function loadedWeather(data){
   drawWeather(data);
 }
   
+function drawLoadingScreen(){
+  let loadingText1 = document.getElementById("loadingText1");
+  let loadingText2 = document.getElementById("loadingText2");
+  let loadingText3 = document.getElementById("loadingText3");
+
+  loadingText1.text = "Downloading"
+  loadingText2.text = "Weather"
+  loadingText3.text = "Click to Force Update"
+}
+
+function drawLoadingWeather(){
+  console.log("Loading Weather");
+  let todayHeader = document.getElementById("todayHeader");
+  
+  let today = new Date()
+  let timeStamp = new Date(weatherData.timestamp);
+  if (timeStamp.getDate()!=today.getDate())
+    timeStamp = timeStamp.getMonth()+1+"/"+timeStamp.getDate()
+  else
+    timeStamp = util.hourAndMinToTime(timeStamp.getHours(), timeStamp.getMinutes());
+  //weatherData.location += " as of " + timeStamp;
+  todayHeader.text = "As of " + timeStamp;
+  console.log(weatherData.location);
+  drawWeather(weatherData);
+}
   
 function drawWeather(data){
   let loadingScreen = document.getElementById("loadingScreen");
@@ -367,6 +362,9 @@ function drawWeather(data){
 }
 
 weather.onerror = (error) => {
+  let loadingText1 = document.getElementById("loadingText1");
+  let loadingText2 = document.getElementById("loadingText2");
+  let loadingText3 = document.getElementById("loadingText3");
   console.log("Weather error " + JSON.stringify(error));
   loadingText1.text = "Update Failed!";
   loadingText2.text = "Click to Try Again";
@@ -423,6 +421,7 @@ function loadWeather(){
 }
 
 function saveSettings() {
+  console.log("Saving Settings");
   const SETTINGS_TYPE = "cbor";
   const SETTINGS_FILE = "settings.cbor";
   fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
@@ -430,6 +429,7 @@ function saveSettings() {
 }
 
 function saveWeather() {
+  console.log("Saving Weather");
   const SETTINGS_TYPE = "cbor";
   const WEATHER_FILE = "weather.cbor";
 

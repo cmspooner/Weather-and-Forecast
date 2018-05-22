@@ -95,6 +95,12 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
         <Text>
+          3.2 Beta: Major oopes, including multiple functions with same name
+        </Text>
+        <Text>
+          3.1 Beta: Missed a DOM Ref
+        </Text>
+        <Text>
           3.0 Beta: Memory Improvements
         </Text>
         <Text>
