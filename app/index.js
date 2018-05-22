@@ -18,122 +18,35 @@ import { me as device } from "device";
 if (!device.screen) device.screen = { width: 348, height: 250 };
 console.log(`Dimensions: ${device.screen.width}x${device.screen.height}`);
 
-const SETTINGS_TYPE = "cbor";
-const SETTINGS_FILE = "settings.cbor";
-const WEATHER_FILE = "weather.cbor";
-
 let background = document.getElementById("clickbg");
 
-let loadingScreen = document.getElementById("loadingScreen");
 
-let loadingText1 = document.getElementById("loadingText1");
-let loadingText2 = document.getElementById("loadingText2");
-let loadingText3 = document.getElementById("loadingText3");
 
-loadingText1.text = "Downloading"
-loadingText2.text = "Weather"
-loadingText3.text = "Click to Force Update"
 
-let weatherScreen = document.getElementById("weatherScreen");
-
-let locationHeader = document.getElementById("locationHeader");
-locationHeader.text = "hello"
-
-let seperatorBar = document.getElementById("seperatorBar");
-
-let todayHeader = document.getElementById("todayHeader");
-let todayDescription = document.getElementById("todayDescription");
-
-let todayWeatherImage = document.getElementById("todayWeatherImage");
-let todayTemperature = document.getElementById("todayTemperature");
-let todayHigh = document.getElementById("todayHigh");
-let todayHighVal = document.getElementById("todayHighVal");
-let todayLow = document.getElementById("todayLow");
-let todayLowVal = document.getElementById("todayLowVal");
-
-let todayWind = document.getElementById("todayWind");
-let windDirection = document.getElementById("windDirection");
-let todayWindSpeed = document.getElementById("todayWindSpeed");
-let todayWindChill = document.getElementById("todayWindChill");
-
-let todayHumidity = document.getElementById("todayHumidity");
-let humidityRising = document.getElementById("humidityRising");
-let humidityRisingImage = document.getElementById("humidityRisingImage");
-let pressure = document.getElementById("pressure");
-let visibility = document.getElementById("visibility");
-
-let sunRise = document.getElementById("sunRise");
-let sunSet = document.getElementById("sunSet");
-
-//-------Day 2--------------
-let day2Header = document.getElementById("day2Header");
-let tomorrowDescription = document.getElementById("tomorrowDescription");
-
-let tomorrowWeatherImage = document.getElementById("tomorrowWeatherImage");
-let tomorrowHigh = document.getElementById("tomorrowHigh");
-let tomorrowHighVal = document.getElementById("tomorrowHighVal");
-let tomorrowLow = document.getElementById("tomorrowLow");
-let tomorrowLowVal = document.getElementById("tomorrowLowVal");
-
-//-------Day 3--------------
-let day3Header = document.getElementById("day3Header");
-let day3Description = document.getElementById("day3Description");
-
-let day3WeatherImage = document.getElementById("day3WeatherImage");
-let day3High = document.getElementById("day3High");
-let day3HighVal = document.getElementById("day3HighVal");
-let day3Low = document.getElementById("day3Low");
-let day3LowVal = document.getElementById("day3LowVal");
-
-//-------Day 4--------------
-let day4Header = document.getElementById("day4Header");
-let day4Description = document.getElementById("day4Description");
-
-let day4WeatherImage = document.getElementById("day4WeatherImage");
-let day4High = document.getElementById("day4High");
-let day4HighVal = document.getElementById("day4HighVal");
-let day4Low = document.getElementById("day4Low");
-let day4LowVal = document.getElementById("day4LowVal");
-
-//-------Day 5--------------
-let day5Header = document.getElementById("day5Header");
-let day5Description = document.getElementById("day5Description");
-
-let day5WeatherImage = document.getElementById("day5WeatherImage");
-let day5High = document.getElementById("day5High");
-let day5HighVal = document.getElementById("day5HighVal");
-let day5Low = document.getElementById("day5Low");
-let day5LowVal = document.getElementById("day5LowVal");
-
-//-------Day 6--------------
-let day6Header = document.getElementById("day6Header");
-let day6Description = document.getElementById("day6Description");
-
-let day6WeatherImage = document.getElementById("day6WeatherImage");
-let day6High = document.getElementById("day6High");
-let day6HighVal = document.getElementById("day6HighVal");
-let day6Low = document.getElementById("day6Low");
-let day6LowVal = document.getElementById("day6LowVal");
-
-//-------Day 7--------------
-let day7Header = document.getElementById("day7Header");
-let day7Description = document.getElementById("day7Description");
-
-let day7WeatherImage = document.getElementById("day7WeatherImage");
-let day7High = document.getElementById("day7High");
-let day7HighVal = document.getElementById("day7HighVal");
-let day7Low = document.getElementById("day7Low");
-let day7LowVal = document.getElementById("day7LowVal");
 
 let settings = loadSettings();
 let weatherData = loadWeather();
 if (weatherData == null){
+  drawLoadingScreen();
+} else {
+  loadWeather();
+}
+
+function drawLoadingScreen(){
+  let loadingText1 = document.getElementById("loadingText1");
+  let loadingText2 = document.getElementById("loadingText2");
+  let loadingText3 = document.getElementById("loadingText3");
+
   loadingText1.text = "Downloading"
   loadingText2.text = "Weather"
   loadingText3.text = "Click to Force Update"
-} else {
-  var today = new Date()
-  var timeStamp = new Date(weatherData.timestamp);
+}
+
+function loadWeather(){
+  let todayHeader = document.getElementById("todayHeader");
+  
+  let today = new Date()
+  let timeStamp = new Date(weatherData.timestamp);
   if (timeStamp.getDate()!=today.getDate())
     timeStamp = timeStamp.getMonth()+1+"/"+timeStamp.getDate()
   else
@@ -201,6 +114,11 @@ weather.setUnit(units.temperature.toLowerCase());
 applySettings(settings);
 
 weather.onsuccess = (data) => {
+  loadedWeather(data);
+}
+
+function loadedWeather(data){
+  let todayHeader = document.getElementById("todayHeader");
   weatherData = data;
   todayHeader.text = "Currently";
 
@@ -209,6 +127,100 @@ weather.onsuccess = (data) => {
   
   
 function drawWeather(data){
+  let loadingScreen = document.getElementById("loadingScreen");
+  let weatherScreen = document.getElementById("weatherScreen");
+  
+  let locationHeader = document.getElementById("locationHeader");
+  
+  let locationHeader = document.getElementById("locationHeader");
+
+  let seperatorBar = document.getElementById("seperatorBar");
+
+  let todayHeader = document.getElementById("todayHeader");
+  let todayDescription = document.getElementById("todayDescription");
+
+  let todayWeatherImage = document.getElementById("todayWeatherImage");
+  let todayTemperature = document.getElementById("todayTemperature");
+  let todayHigh = document.getElementById("todayHigh");
+  let todayHighVal = document.getElementById("todayHighVal");
+  let todayLow = document.getElementById("todayLow");
+  let todayLowVal = document.getElementById("todayLowVal");
+
+  let todayWind = document.getElementById("todayWind");
+  let windDirection = document.getElementById("windDirection");
+  let todayWindSpeed = document.getElementById("todayWindSpeed");
+  let todayWindChill = document.getElementById("todayWindChill");
+
+  let todayHumidity = document.getElementById("todayHumidity");
+  let humidityRising = document.getElementById("humidityRising");
+  let humidityRisingImage = document.getElementById("humidityRisingImage");
+  let pressure = document.getElementById("pressure");
+  let visibility = document.getElementById("visibility");
+
+  let sunRise = document.getElementById("sunRise");
+  let sunSet = document.getElementById("sunSet");
+
+  //-------Day 2--------------
+  let day2Header = document.getElementById("day2Header");
+  let tomorrowDescription = document.getElementById("tomorrowDescription");
+
+  let tomorrowWeatherImage = document.getElementById("tomorrowWeatherImage");
+  let tomorrowHigh = document.getElementById("tomorrowHigh");
+  let tomorrowHighVal = document.getElementById("tomorrowHighVal");
+  let tomorrowLow = document.getElementById("tomorrowLow");
+  let tomorrowLowVal = document.getElementById("tomorrowLowVal");
+
+  //-------Day 3--------------
+  let day3Header = document.getElementById("day3Header");
+  let day3Description = document.getElementById("day3Description");
+
+  let day3WeatherImage = document.getElementById("day3WeatherImage");
+  let day3High = document.getElementById("day3High");
+  let day3HighVal = document.getElementById("day3HighVal");
+  let day3Low = document.getElementById("day3Low");
+  let day3LowVal = document.getElementById("day3LowVal");
+
+  //-------Day 4--------------
+  let day4Header = document.getElementById("day4Header");
+  let day4Description = document.getElementById("day4Description");
+
+  let day4WeatherImage = document.getElementById("day4WeatherImage");
+  let day4High = document.getElementById("day4High");
+  let day4HighVal = document.getElementById("day4HighVal");
+  let day4Low = document.getElementById("day4Low");
+  let day4LowVal = document.getElementById("day4LowVal");
+
+  //-------Day 5--------------
+  let day5Header = document.getElementById("day5Header");
+  let day5Description = document.getElementById("day5Description");
+
+  let day5WeatherImage = document.getElementById("day5WeatherImage");
+  let day5High = document.getElementById("day5High");
+  let day5HighVal = document.getElementById("day5HighVal");
+  let day5Low = document.getElementById("day5Low");
+  let day5LowVal = document.getElementById("day5LowVal");
+
+  //-------Day 6--------------
+  let day6Header = document.getElementById("day6Header");
+  let day6Description = document.getElementById("day6Description");
+
+  let day6WeatherImage = document.getElementById("day6WeatherImage");
+  let day6High = document.getElementById("day6High");
+  let day6HighVal = document.getElementById("day6HighVal");
+  let day6Low = document.getElementById("day6Low");
+  let day6LowVal = document.getElementById("day6LowVal");
+
+  //-------Day 7--------------
+  let day7Header = document.getElementById("day7Header");
+  let day7Description = document.getElementById("day7Description");
+
+  let day7WeatherImage = document.getElementById("day7WeatherImage");
+  let day7High = document.getElementById("day7High");
+  let day7HighVal = document.getElementById("day7HighVal");
+  let day7Low = document.getElementById("day7Low");
+  let day7LowVal = document.getElementById("day7LowVal");
+
+  
   weatherScreen.style.display = "inline";
   loadingScreen.style.display = "none";
   console.log("Weather is " + JSON.stringify(data));
@@ -361,6 +373,7 @@ weather.onerror = (error) => {
   
 }
 function applySettings(settings){
+  let seperatorBar = document.getElementById("seperatorBar");
   weather.setUnit(settings.unit);
   console.log("Color: " + settings.color)
   seperatorBar.style.fill = settings.color;
@@ -368,6 +381,10 @@ function applySettings(settings){
 
 background.onclick = function(evt) {
   console.log("Click");
+  let loadingText1 = document.getElementById("loadingText1");
+  let loadingText2 = document.getElementById("loadingText2");
+  let loadingText3 = document.getElementById("loadingText3");
+  
   loadingText1.text = "Downloading";
   loadingText2.text = "Weather";
   loadingText3.text = clkMsgs[msg];
@@ -379,6 +396,9 @@ background.onclick = function(evt) {
 me.onunload = saveSettings;
 
 function loadSettings() {
+  const SETTINGS_TYPE = "cbor";
+  const SETTINGS_FILE = "settings.cbor";
+  
   try {
     return fs.readFileSync(SETTINGS_FILE, SETTINGS_TYPE);
   } catch (ex) {
@@ -391,6 +411,9 @@ function loadSettings() {
 }
 
 function loadWeather(){
+  const SETTINGS_TYPE = "cbor";
+  const WEATHER_FILE = "weather.cbor";
+  
   try {
     return fs.readFileSync(WEATHER_FILE, SETTINGS_TYPE);
   } catch (ex) {
@@ -400,10 +423,15 @@ function loadWeather(){
 }
 
 function saveSettings() {
+  const SETTINGS_TYPE = "cbor";
+  const SETTINGS_FILE = "settings.cbor";
   fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
   saveWeather();
 }
 
 function saveWeather() {
+  const SETTINGS_TYPE = "cbor";
+  const WEATHER_FILE = "weather.cbor";
+
   fs.writeFileSync(WEATHER_FILE, weatherData, SETTINGS_TYPE);
 }

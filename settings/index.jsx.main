@@ -95,28 +95,7 @@ function mySettings(props) {
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
         <Text>
-          3.0 Beta: Memory Improvements
-        </Text>
-        <Text>
-          2.5 Beta: Settings now shows units
-        </Text>
-        <Text>
-          2.4.1 Beta: Day/Night Icon Fixed, no really this time
-        </Text>
-        <Text>
-          2.4 Beta: Day/Night Icon Fixed
-        </Text>
-         <Text>
-          2.3.1 Beta: Moved timestamp to today header
-        </Text>
-        <Text>
-          2.3 Beta: Added timestamp for old weather
-        </Text>
-        <Text>
-          2.2 Beta: Changed Icon
-        </Text>
-        <Text>
-          2.1 Beta: Adding Weather saving
+          2.0: Weather data stored locally and shown. The first header says "as of ..." and the time/date of last data when downloading and "Currently" when updated
         </Text>
         <Text>
           1.0: First official release
