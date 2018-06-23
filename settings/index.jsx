@@ -2,13 +2,19 @@ function mySettings(props) {
   return (
     <Page>
       <Section 
-        title={<Text bold align="center">Weather</Text>}>
+        title={<Text bold align="center">Units</Text>}>
          <Toggle
            settingsKey="unitToggle"
            label="Set Temperature units to Celsius" 
            onChange={value => props.settingsStorage.setItem('unit', value.toString())}
          />
         <Text>Temperatures in degrees {props.settingsStorage.getItem('unit') == "true" ? "celsius" : "fahrenheit"}</Text>
+         <Toggle
+           settingsKey="distUnitToggle"
+           label="Force Distnce units to Miles" 
+           onChange={value => props.settingsStorage.setItem('unit', value.toString())}
+         />
+        <Text>This is for UK users. Units set by fitbit user profile otherwise.</Text>
       </Section>
       <Section
         title={<Text bold align="center">Seperator Bar Color</Text>}>
@@ -94,6 +100,18 @@ function mySettings(props) {
       </Section>
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
+        <Text>
+          3.6 Beta: Tweaking red for readablity
+        </Text>
+        <Text>
+          3.5 Beta: Now using styles properly!
+        </Text>
+        <Text>
+          3.4 Beta: Use user units by default.
+        </Text>
+        <Text>
+          3.3 Beta: Adding manual unit over-ride option
+        </Text>
         <Text>
           3.2 Beta: Major oopes, including multiple functions with same name
         </Text>

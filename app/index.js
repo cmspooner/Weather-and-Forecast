@@ -63,6 +63,12 @@ messaging.peerSocket.onmessage = evt => {
       weather.setMaximumAge(10 * 60 * 1000); 
     }
   }
+  if (evt.data.key === "distUnitToggle" && evt.data.newValue) {
+    settings.forceDist = JSON.parse(evt.data.newValue);
+    console.log(`Force Distance: ${settings.forceDist}`);
+    if (weatherData)
+      drawWeather(weatherData);
+  }
   if (evt.data.key === "color" && evt.data.newValue) {
     settings.color = JSON.parse(evt.data.newValue);
     console.log("New Color: " + settings.color);
@@ -80,7 +86,8 @@ weather.setApiKey("");
 weather.setMaximumAge(10 * 60 * 1000); 
 weather.setFeelsLike(false);
 weather.setUnit(units.temperature.toLowerCase());
-
+if (!settings.unit)
+  settings.unit = units.temperature.toLowerCase();
 applySettings(settings);
 
 weather.onsuccess = (data) => {
@@ -237,7 +244,10 @@ function drawWeather(data){
   
   todayWind.text = "Wind:"
   windDirection.groupTransform.rotate.angle = data.windDirection;
-  todayWindSpeed.text = "Speed: " + data.windSpeed + " " + data.windUnit
+  if (settings.forceDist && data.windUnit == 'km/h')
+    todayWindSpeed.text = "Speed: " + util.round2(data.windSpeed * 0.621371) + " " + "mph";
+  else
+    todayWindSpeed.text = "Speed: " + data.windSpeed + " " + data.windUnit
   todayWindChill.text = "Chill: " + data.windChill + "°"
   
   todayHumidity.text = "Humidity: " + data.humidity + "%";
@@ -256,7 +266,10 @@ function drawWeather(data){
       break;
   }
   pressure.text = "Pressure: " + util.round2(data.pressure*0.0295301) + " " + data.pressureUnit;
-  visibility.text = "Visibility: " + data.visibility + " " + data.visibilityUnit;
+  if (settings.forceDist && data.visibilityUnit == "km")
+    visibility.text = "Visibility: " + util.round2(data.visibility *  0.621371) + " " + "mi";
+  else
+    visibility.text = "Visibility: " + data.visibility + " " + data.visibilityUnit;
   
   let sunR = new Date(data.sunrise);
   let sunRH = sunR.getHours();
@@ -402,8 +415,9 @@ function loadSettings() {
   } catch (ex) {
     // Defaults
     return {
-      unit : 'f',
-      color : '#000000'
+      unit      : units.temperature.toLowerCase(),
+      forceDist : false,
+      color     : 'steelblue'
     }
   }
 }

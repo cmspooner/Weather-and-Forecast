@@ -31,14 +31,13 @@
       </use>
       <use href="#scrollview-item" height = "325">
         <rect width="100%" height="100%" fill="fb-black" />
-        <text id="todayDescription" x="3" y="25" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+        <text id="todayDescription" class="description" />
         <image id="todayWeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
         <text id="todayTemperature" x="75" y="55" fill="white" font-size="25"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
         <text id="todayHigh" x="75" y="80" fill="white" font-size="20"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
-        <text id="todayHighVal" x="126" y="80" fill="red" font-size="20"
+        <text id="todayHighVal" x="126" y="80" fill="tomato" font-size="20"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
         <text id="todayLow" x="175" y="80" fill="white" font-size="20"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
@@ -76,19 +75,12 @@
       </use>
       <use href="#scrollview-item" height = "90">
         <rect width="100%" height="80" fill="fb-black" />
-         <text id="tomorrowDescription" x="3" y="25" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
-
+         <text id="tomorrowDescription" class="description" />
         <image id="tomorrowWeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
-
-        <text id="tomorrowHigh" x="75" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="tomorrowHighVal" x="143" y="60" fill="red" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="tomorrowLow" x="190" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="tomorrowLowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="tomorrowHigh" class="high"/>
+        <text id="tomorrowHighVal" class="highVal"/>
+        <text id="tomorrowLow" class="low"/>
+        <text id="tomorrowLowVal" class ="lowVal"/>
       </use>
       <!-- Section 3  -->
       <use id="day3Header" href="#view-header" height="30" fill="silver">
@@ -96,19 +88,14 @@
       </use>
       <use href="#scrollview-item" height = "90">
         <rect width="100%" height="100%" fill="fb-black" />
-         <text id="day3Description" x="3" y="25" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+         <text id="day3Description" class="description"/>
 
         <image id="day3WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day3High" x="75" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day3HighVal" x="143" y="60" fill="red" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day3Low" x="190" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day3LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day3High" class="high"/>
+        <text id="day3HighVal" class="highVal"/>
+        <text id="day3Low" class="low"/>
+        <text id="day3LowVal" class ="lowVal"/>
       </use>
 
       <!-- Section 4  -->
@@ -117,19 +104,14 @@
       </use>
       <use href="#scrollview-item" height = "90">
         <rect width="100%" height="100%" fill="fb-black" />
-         <text id="day4Description" x="3" y="25" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+         <text id="day4Description" class="description"/>
 
         <image id="day4WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day4High" x="75" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day4HighVal" x="143" y="60" fill="red" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day4Low" x="190" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day4LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day4High" class="high"/>
+        <text id="day4HighVal" class="highVal"/>
+        <text id="day4Low" class="low"/>
+        <text id="day4LowVal" class ="lowVal"/>
       </use>
 
       <!-- Section 5  -->
@@ -138,19 +120,14 @@
       </use>
       <use href="#scrollview-item" height = "90">
         <rect width="100%" height="100%" fill="fb-black" />
-         <text id="day5Description" x="3" y="25" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+         <text id="day5Description" class="description"/>
 
         <image id="day5WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day5High" x="75" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day5HighVal" x="143" y="60" fill="red" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day5Low" x="190" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day5LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day5High" class="high"/>
+        <text id="day5HighVal" class="highVal"/>
+        <text id="day5Low"class="low"/>
+        <text id="day5LowVal" class ="lowVal"/>
       </use>
       
       <!-- Section 6  -->
@@ -159,19 +136,14 @@
       </use>
       <use href="#scrollview-item" height = "90">
         <rect width="100%" height="100%" fill="fb-black" />
-         <text id="day6Description" x="3" y="25" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+         <text id="day6Description"class="description"/>
 
         <image id="day6WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day6High" x="75" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day6HighVal" x="143" y="60" fill="red" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day6Low" x="190" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day6LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day6High" class="high"/>
+        <text id="day6HighVal" class="highVal"/>
+        <text id="day6Low" class="low"/>
+        <text id="day6LowVal" x="250" class ="lowVal"/>
       </use>
       
       <!-- Section 7  -->
@@ -180,19 +152,14 @@
       </use>
       <use href="#scrollview-item" height = "90">
         <rect width="100%" height="100%" fill="fb-black" />
-         <text id="day7Description" x="3" y="25" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+         <text id="day7Description"class="description"/>
 
         <image id="day7WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
 
-        <text id="day7High" x="75" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day7HighVal" x="143" y="60" fill="red" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day7Low" x="190" y="60" fill="white" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="day7LowVal" x="250" y="60" fill="cornflowerblue" font-size="24"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="day7High" class="high"/>
+        <text id="day7HighVal" class="highVal"/>
+        <text id="day7Low" class="low"/>
+        <text id="day7LowVal" class ="lowVal"/>
       </use>
     </use>
   </svg>
