@@ -46,11 +46,11 @@ const getCustomFile = function() {
 export default class Weather {
   constructor() {
     this._apiKey = '';
-    this._provider = 'yahoo';
-    this._feelsLike = true;
+    this._provider = '';
+    this._feelsLike = false;
 
     this._maximumAge = 0;
-    this._unit = 'c'
+    this._unit = 'f'
     
     try {
       this._weather = fs.readFileSync(WEATHER_DATA_FILE, "cbor");
@@ -79,7 +79,6 @@ export default class Weather {
   }
   
   setUnit(unit){
-    console.log(unit);
     if (unit == "f")
       this._unit = 'f';
     else
@@ -103,7 +102,6 @@ export default class Weather {
   }
   
   fetch() {
-    console.log("I'm a fetch'n some weather!")
     let now = new Date().getTime();
     if(this._weather !== undefined && this._weather.timestamp !== undefined && (now - this._weather.timestamp < this._maximumAge)) {
       // return previous weather if the maximum age is not reached

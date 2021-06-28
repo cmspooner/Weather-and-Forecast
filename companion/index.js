@@ -4,17 +4,14 @@ import { settingsStorage } from "settings";
 import Weather from '../common/weather/phone';
 let weather = new Weather();
 
-console.log("Companion Started");
 
 // Message socket opens
 messaging.peerSocket.onopen = () => {
-  console.log("Companion Socket Open");
   restoreSettings();
 };
 
 // Message socket closes
 messaging.peerSocket.close = () => {
-  console.log("Companion Socket Closed");
 };
 
 // A user changes settings

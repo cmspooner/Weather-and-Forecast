@@ -1,4 +1,7 @@
 {
+  "devDependencies": {
+    "@fitbit/sdk": "5.0"
+  },
   "fitbit": {
     "appUUID": "ae653281-2f9f-452c-8e60-6feb63bec0cd",
     "appType": "app",
@@ -10,13 +13,14 @@
       "access_location"
     ],
     "buildTargets": [
-      "higgs",
-      "meson"
+      "atlas",
+      "vulcan"
     ],
     "i18n": {
-      "en": {
+      "en-US": {
         "name": "WeatherCast Beta"
       }
-    }
+    },
+    "defaultLanguage": "en-US"
   }
 }
