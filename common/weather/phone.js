@@ -111,18 +111,22 @@ function prv_fetch(provider, apiKey, feelsLike, unit, latitude, longitude, succe
   else if (provider === "omw") {
     prv_queryOWMWeather(apiKey, latitude, longitude, success, error);
   } else {
-    //prv_queryAccuWeather(apiKey, feelsLike, latitude, longitude, unit, success, error);
-    var accuWeatherMetricUnit = false;
-    if (unit === 'c') {
-      accuWeatherMetricUnit=true;
-    }
-
-    getAccuWeatherLocation(apiKey, latitude, longitude, error).then(locationData => {
-      getAccuWeatherCurrentConditions(apiKey, feelsLike, locationData.key, accuWeatherMetricUnit, error).then(currentConditions => {
-        getAccuWeatherResults(apiKey, feelsLike, accuWeatherMetricUnit, locationData, currentConditions, success, error);
-      })
-    });
+    prv_queryAccuWeather(apiKey, feelsLike, unit, latitude, longitude, success, error);
   }
+}
+
+function prv_queryAccuWeather(apiKey, feelsLike, unit, latitude, longitude, success, error) {
+  let accuWeatherMetricUnit = false;
+  if (unit === 'c') {
+    accuWeatherMetricUnit=true;
+  }
+  console.log(apiKey)
+
+  getAccuWeatherLocation(apiKey, latitude, longitude, error).then(locationData => {
+    getAccuWeatherCurrentConditions(apiKey, feelsLike, locationData.key, accuWeatherMetricUnit, error).then(currentConditions => {
+      getAccuWeatherResults(apiKey, feelsLike, accuWeatherMetricUnit, locationData, currentConditions, success, error);
+    })
+  });
 }
 
 function getAccuWeatherLocation(apiKey, latitude, longitude, error) {

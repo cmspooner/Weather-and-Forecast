@@ -44,7 +44,6 @@ messaging.peerSocket.onopen = function() {
 }
 
 messaging.peerSocket.onmessage = evt => {
-  console.log(`App received: ${JSON.stringify(evt)}`);
   if (evt.data.key === "unitToggle" && evt.data.newValue) {
     let degreesF = !JSON.parse(evt.data.newValue);
     console.log(`Fahrenheit: ${degreesF}`);
@@ -71,6 +70,11 @@ messaging.peerSocket.onmessage = evt => {
     console.log("New Color: " + settings.color);
     applySettings(settings);
   }
+  if (evt.data.key === "apiKey" && evt.data.newValue) {
+    let inputText = JSON.parse(evt.data.newValue);
+    settings.apiKey = inputText.name;
+    applySettings(settings);
+  }
   saveSettings();
 }
 
@@ -78,8 +82,8 @@ messaging.peerSocket.onmessage = evt => {
 import Weather from '../common/weather/device';
 
 let weather = new Weather();
-weather.setProvider("accuWeather"); 
-weather.setApiKey("");
+weather.setProvider("accuWeather");
+weather.setApiKey(settings.apiKey);
 weather.setMaximumAge(10 * 60 * 1000); 
 weather.setFeelsLike(true);
 weather.setUnit(units.temperature.toLowerCase());
@@ -338,6 +342,7 @@ weather.onerror = (error) => {
 function applySettings(settings){
   let seperatorBar = document.getElementById("seperatorBar");
   weather.setUnit(settings.unit);
+  weather.setApiKey(settings.apiKey);
   seperatorBar.style.fill = settings.color;
 }
 
@@ -386,7 +391,6 @@ function loadWeather(){
 }
 
 function saveSettings() {
-  console.log("Saving Settings");
   const SETTINGS_TYPE = "cbor";
   const SETTINGS_FILE = "settings.cbor";
   fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
@@ -394,7 +398,6 @@ function saveSettings() {
 }
 
 function saveWeather() {
-  console.log("Saving Weather");
   const SETTINGS_TYPE = "cbor";
   const WEATHER_FILE = "weather.cbor";
 
