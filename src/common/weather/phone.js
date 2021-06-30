@@ -120,7 +120,6 @@ function prv_queryAccuWeather(apiKey, feelsLike, unit, latitude, longitude, succ
   if (unit === 'c') {
     accuWeatherMetricUnit=true;
   }
-  console.log(apiKey)
 
   getAccuWeatherLocation(apiKey, latitude, longitude, error).then(locationData => {
     getAccuWeatherCurrentConditions(apiKey, feelsLike, locationData.key, accuWeatherMetricUnit, error).then(currentConditions => {
