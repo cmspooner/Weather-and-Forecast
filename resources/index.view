@@ -44,18 +44,18 @@
         <text id="todayLowVal" x="222" y="80" fill="cornflowerblue" font-size="20"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
 
-        <text id="todayWind" x="3" y="110" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+        <text id="todayWind" x="3" y="110" fill="white" font-size="24"
+          font-weight="regular" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
         <g id="windDirection" transform="translate(40,140)">
           <image id="WindSpeedImage" x="$-30" y="$-30" width="60" height="60" href="icons/weather/windArrow.png" load="sync"/>
         </g>
         <text id="todayWindSpeed" x="75" y="137" fill="white" font-size="25"
-          font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+          font-weight="regular" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
         <text id="todayWindChill" x="75" y="165" fill="white" font-size="25"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
 
-        <text id="todayHumidity" x="3" y="195" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Bold" text-anchor="start" text-length="50"/>
+        <text id="todayHumidity" x="3" y="195" fill="white" font-size="24"
+          font-weight="regular" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
         <g id="humidityRising" transform="translate(40,225)">
           <image id="humidityRisingImage" x="$-30" y="$-30" width="60" height="60" href="icons/weather/dash.png" load="sync"/>
         </g>
@@ -64,10 +64,10 @@
         <text id="visibility" x="75" y="245" fill="white" font-size="25"
           font-weight="bold" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
         
-        <text id="sunRise" x="3" y="277" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
-        <text id="sunSet" x="3" y="305" fill="white" font-size="30"
-          font-weight="bold" font-family="Colfax-Medium" text-anchor="start" text-length="50"/>
+        <text id="sunRise" x="3" y="277" fill="white" font-size="24"
+          font-weight="regular" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
+        <text id="sunSet" x="3" y="305" fill="white" font-size="24"
+          font-weight="regular" font-family="Colfax-Regular" text-anchor="start" text-length="50"/>
       </use>
         <!-- Section 2 -->
       <use id="day2Header" href="#view-header" height="30" fill="silver">
@@ -128,38 +128,6 @@
         <text id="day5HighVal" class="highVal"/>
         <text id="day5Low"class="low"/>
         <text id="day5LowVal" class ="lowVal"/>
-      </use>
-      
-      <!-- Section 6  -->
-      <use id="day6Header" href="#view-header" height="30" fill="silver">
-        <set href="#text" attributeName="text-buffer" to="Section 2" />
-      </use>
-      <use href="#scrollview-item" height = "90">
-        <rect width="100%" height="100%" fill="fb-black" />
-         <text id="day6Description"class="description"/>
-
-        <image id="day6WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
-
-        <text id="day6High" class="high"/>
-        <text id="day6HighVal" class="highVal"/>
-        <text id="day6Low" class="low"/>
-        <text id="day6LowVal" x="250" class ="lowVal"/>
-      </use>
-      
-      <!-- Section 7  -->
-      <use id="day7Header" href="#view-header" height="30" fill="silver">
-        <set href="#text" attributeName="text-buffer" to="Section 2" />
-      </use>
-      <use href="#scrollview-item" height = "90">
-        <rect width="100%" height="100%" fill="fb-black" />
-         <text id="day7Description"class="description"/>
-
-        <image id="day7WeatherImage" x="10" y="25" width="60" height="60" href="" load="sync"/>
-
-        <text id="day7High" class="high"/>
-        <text id="day7HighVal" class="highVal"/>
-        <text id="day7Low" class="low"/>
-        <text id="day7LowVal" class ="lowVal"/>
       </use>
     </use>
   </svg>

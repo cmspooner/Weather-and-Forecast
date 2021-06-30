@@ -1,4 +1,4 @@
-console.log("Weather & Forecast Started");
+
 
 /*
  * Entry point for the watch app
@@ -16,21 +16,18 @@ import * as util from "../common/utils";
 
 import { me as device } from "device";
 if (!device.screen) device.screen = { width: 348, height: 250 };
-console.log(`Dimensions: ${device.screen.width}x${device.screen.height}`);
 
 let background = document.getElementById("clickbg");
 
 let settings = loadSettings();
 let weatherData = loadWeather();
 if (weatherData == null){
-  console.log("No weather")
   drawLoadingScreen();
 } else {
   drawLoadingWeather();
 }
 
 //fs.unlinkSync(SETTINGS_FILE);
-console.log("Settings: " + settings.color);
 
 var clkMsgs =["Forcing Download",
               "Trying again",
@@ -47,7 +44,6 @@ messaging.peerSocket.onopen = function() {
 }
 
 messaging.peerSocket.onmessage = evt => {
-  console.log(`App received: ${JSON.stringify(evt)}`);
   if (evt.data.key === "unitToggle" && evt.data.newValue) {
     let degreesF = !JSON.parse(evt.data.newValue);
     console.log(`Fahrenheit: ${degreesF}`);
@@ -74,6 +70,11 @@ messaging.peerSocket.onmessage = evt => {
     console.log("New Color: " + settings.color);
     applySettings(settings);
   }
+  if (evt.data.key === "apiKey" && evt.data.newValue) {
+    let inputText = JSON.parse(evt.data.newValue);
+    settings.apiKey = inputText.name;
+    applySettings(settings);
+  }
   saveSettings();
 }
 
@@ -81,10 +82,10 @@ messaging.peerSocket.onmessage = evt => {
 import Weather from '../common/weather/device';
 
 let weather = new Weather();
-weather.setProvider("yahoo"); 
-weather.setApiKey("");
+weather.setProvider("accuWeather");
+weather.setApiKey(settings.apiKey);
 weather.setMaximumAge(10 * 60 * 1000); 
-weather.setFeelsLike(false);
+weather.setFeelsLike(true);
 weather.setUnit(units.temperature.toLowerCase());
 if (!settings.unit)
   settings.unit = units.temperature.toLowerCase();
@@ -113,7 +114,6 @@ function drawLoadingScreen(){
 }
 
 function drawLoadingWeather(){
-  console.log("Loading Weather");
   let todayHeader = document.getElementById("todayHeader");
   
   let today = new Date()
@@ -124,15 +124,12 @@ function drawLoadingWeather(){
     timeStamp = util.hourAndMinToTime(timeStamp.getHours(), timeStamp.getMinutes());
   //weatherData.location += " as of " + timeStamp;
   todayHeader.text = "As of " + timeStamp;
-  console.log(weatherData.location);
   drawWeather(weatherData);
 }
   
 function drawWeather(data){
   let loadingScreen = document.getElementById("loadingScreen");
   let weatherScreen = document.getElementById("weatherScreen");
-  
-  let locationHeader = document.getElementById("locationHeader");
   
   let locationHeader = document.getElementById("locationHeader");
 
@@ -202,30 +199,9 @@ function drawWeather(data){
   let day5Low = document.getElementById("day5Low");
   let day5LowVal = document.getElementById("day5LowVal");
 
-  //-------Day 6--------------
-  let day6Header = document.getElementById("day6Header");
-  let day6Description = document.getElementById("day6Description");
-
-  let day6WeatherImage = document.getElementById("day6WeatherImage");
-  let day6High = document.getElementById("day6High");
-  let day6HighVal = document.getElementById("day6HighVal");
-  let day6Low = document.getElementById("day6Low");
-  let day6LowVal = document.getElementById("day6LowVal");
-
-  //-------Day 7--------------
-  let day7Header = document.getElementById("day7Header");
-  let day7Description = document.getElementById("day7Description");
-
-  let day7WeatherImage = document.getElementById("day7WeatherImage");
-  let day7High = document.getElementById("day7High");
-  let day7HighVal = document.getElementById("day7HighVal");
-  let day7Low = document.getElementById("day7Low");
-  let day7LowVal = document.getElementById("day7LowVal");
-
   
   weatherScreen.style.display = "inline";
   loadingScreen.style.display = "none";
-  console.log("Weather is " + JSON.stringify(data));
   
   let today = new Date();
   let day = today.getDay();
@@ -352,26 +328,6 @@ function drawWeather(data){
   day5HighVal.text = data.day5High + "°"
   day5Low.text = "Low:"
   day5LowVal.text = data.day5Low + "°"
-  
-  //--------------Day 6--------------
-  day6Header.text = util.toDay(day+5, "long");
-  day6WeatherImage.href = util.getForecastIcon(data.day6Condition,
-                                                   data.day6Description);
-  day6Description.text = util.shortenText(data.day6Description);
-  day6High.text = "High:"
-  day6HighVal.text = data.day6High + "°"
-  day6Low.text = "Low:"
-  day6LowVal.text = data.day6Low + "°"
-  
-  //--------------Day 7--------------
-  day7Header.text = util.toDay(day+6, "long");
-  day7WeatherImage.href = util.getForecastIcon(data.day7Condition,
-                                                   data.day7Description);
-  day7Description.text = util.shortenText(data.day7Description);
-  day7High.text = "High:"
-  day7HighVal.text = data.day7High + "°"
-  day7Low.text = "Low:"
-  day7LowVal.text = data.day7Low + "°"
 }
 
 weather.onerror = (error) => {
@@ -386,7 +342,7 @@ weather.onerror = (error) => {
 function applySettings(settings){
   let seperatorBar = document.getElementById("seperatorBar");
   weather.setUnit(settings.unit);
-  console.log("Color: " + settings.color)
+  weather.setApiKey(settings.apiKey);
   seperatorBar.style.fill = settings.color;
 }
 
@@ -435,7 +391,6 @@ function loadWeather(){
 }
 
 function saveSettings() {
-  console.log("Saving Settings");
   const SETTINGS_TYPE = "cbor";
   const SETTINGS_FILE = "settings.cbor";
   fs.writeFileSync(SETTINGS_FILE, settings, SETTINGS_TYPE);
@@ -443,7 +398,6 @@ function saveSettings() {
 }
 
 function saveWeather() {
-  console.log("Saving Weather");
   const SETTINGS_TYPE = "cbor";
   const WEATHER_FILE = "weather.cbor";
 

@@ -11,9 +11,9 @@
 
 .description {
   fill: white;
-  font-size: 30;
-  font-weight: bold;
-  font-family: Colfax-Bold;
+  font-size: 24;
+  font-weight: regular;
+  font-family: Colfax-Medium;
   text-anchor: start;
   text-length: 50;
   x: 3;

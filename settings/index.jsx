@@ -3,6 +3,15 @@ function mySettings(props) {
     <Page>
       <Section 
         title={<Text bold align="center">Units</Text>}>
+         <TextInput
+           label="AccuWeather API Key"
+           settingsKey="apiKey"
+         />
+        <Link source="https://www.google.com">
+          <Text>
+            Get a free AccuWeather API Key.
+          </Text>
+        </Link>
          <Toggle
            settingsKey="unitToggle"
            label="Set Temperature units to Celsius" 
@@ -100,6 +109,9 @@ function mySettings(props) {
       </Section>
       <Section
         title={<Text bold align="center">Build Version and Notes</Text>}>
+        <Text>
+          3.7 Beta: Replaced Yahoo Weather provider (which was decommissioned by Yahoo). AccuWeahter is now in replacing it.
+        </Text>
         <Text>
           3.6 Beta: Tweaking red for readablity
         </Text>
