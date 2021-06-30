@@ -11,7 +11,7 @@ function mySettings(props) {
         <Text>Temperatures in degrees {props.settingsStorage.getItem('unit') == "true" ? "celsius" : "fahrenheit"}</Text>
          <Toggle
            settingsKey="distUnitToggle"
-           label="Force Distnce units to Miles" 
+           label="Force Distance units to Miles" 
            onChange={value => props.settingsStorage.setItem('unit', value.toString())}
          />
         <Text>This is for UK users. Units set by fitbit user profile otherwise.</Text>
