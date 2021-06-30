@@ -7,7 +7,7 @@ function mySettings(props) {
            label="AccuWeather API Key"
            settingsKey="apiKey"
          />
-        <Link source="https://www.google.com">
+        <Link source="https://github.com/cmspooner/Weather-and-Forecast/wiki/Get-your-free-API-Key-to-enable-WeatherCast-app-for-Fitbit">
           <Text>
             Get a free AccuWeather API Key.
           </Text>
