@@ -83,7 +83,7 @@ import Weather from '../common/weather/device';
 
 let weather = new Weather();
 weather.setProvider("accuWeather");
-weather.setApiKey(settings.apiKey);
+weather.setApiKey(settings.apiKey); //dev "pAmZzAyNvGJG4XCwv4ty3fCCRz8rhhLM" //prod xsV6jaZaDKlFaGTxkWJjABsudnIYkIk7
 weather.setMaximumAge(10 * 60 * 1000); 
 weather.setFeelsLike(true);
 weather.setUnit(units.temperature.toLowerCase());
